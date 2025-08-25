@@ -21,17 +21,7 @@ public class LevelSelect : MonoBehaviour
     }
     private void Start()
     {
-        System.Collections.Generic.IEnumerable<LevelSelectionBox> SceneObjects = this.gameObject.GetComponentsInChildren<LevelSelectionBox>().Where(go => go.gameObject != this.gameObject);
-
-        foreach (var lvlsBox in SceneObjects)
-        {
-            LVLSBoxes.Add(lvlsBox);
-        }
-        if (LVLSBoxes.Count > 0&&LVLSBoxes.Count>EnemiesDefeated)
-         {
-            LVLSBoxes[EnemiesDefeated].SetDefault();
-         }
-        Debug.Log("LVLSBOXES:"+LVLSBoxes.Count());
+        SceneSetUp();
     }
 
     // Update is called once per frame
@@ -40,12 +30,54 @@ public class LevelSelect : MonoBehaviour
         
     }
 
+    public void SceneSetUp()
+    {
+        System.Collections.Generic.IEnumerable<LevelSelectionBox> SceneObjects = this.gameObject.GetComponentsInChildren<LevelSelectionBox>().Where(go => go.gameObject != this.gameObject);
+
+        foreach (var lvlsBox in SceneObjects)
+        {
+            LVLSBoxes.Add(lvlsBox);
+        }
+        LevelBoxSetUp();
+
+
+        Debug.Log("LVLSBOXES:" + LVLSBoxes.Count());
+    }
+    public void LevelBoxSetUp()
+    {
+        if (LVLSBoxes.Count > 0 && LVLSBoxes.Count > EnemiesDefeated)
+        {
+            foreach (LevelSelectionBox LvlsBox in LVLSBoxes)
+            {
+                if (LvlsBox.LevelID >= EnemiesDefeated)
+                {
+                    LvlsBox.SetDefaultPortrait();
+                }
+                else
+                {
+                    LvlsBox.SetLossPortrait();
+                }
+
+            }
+                
+        }
+    }
+
+
     public void LoadNextLevel()
     {
         if(LVLSBoxes.Count > 0&&LVLSBoxes.Count>EnemiesDefeated) 
         {
-            Debug.Log("Load Level:" + LVLSBoxes[EnemiesDefeated].LevelID);
-            //SceneManager.LoadScene(LVLSBoxes[EnemiesDefeated].LevelID);
+            foreach(LevelSelectionBox LvlsBox in LVLSBoxes)
+            {
+                if (LvlsBox.LevelID == EnemiesDefeated) 
+                {
+
+                    Debug.Log("Load Level:" +LvlsBox.LevelName);
+                    //SceneManager.LoadScene(LVLSBoxes[EnemiesDefeated].LevelID);
+                }
+            }
+
         }
      
     }
