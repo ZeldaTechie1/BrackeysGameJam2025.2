@@ -13,13 +13,18 @@ public class ScoreController : MonoBehaviour
 
     void ScoreTazos(List<Tazo> currentActiveTazos)
     {
+        List<Tazo> flippedTazos = new();
         foreach(Tazo tazo in currentActiveTazos)
         {
             if(tazo.HasBeenFlipped())
             {
-                tazo.gameObject.SetActive(false);
                 score += tazo.GetFinalScore();
+                flippedTazos.Add(tazo);
             }
+        }
+        foreach(Tazo tazo in flippedTazos)
+        {
+            tazo.gameObject.SetActive(false);
         }
     }
 }

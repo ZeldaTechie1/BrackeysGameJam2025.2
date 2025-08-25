@@ -1,10 +1,11 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Tazo : MonoBehaviour
 {
     [SerializeField] float scoreValue;
-    List<Modifier> modifiers;
+    List<IModifier> modifiers = new();
 
 
     Rigidbody rb;
@@ -12,12 +13,21 @@ public class Tazo : MonoBehaviour
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        Debug.Log(transform.up);
+        TazoTracker.OnTazosDoneMoving += (x)=> AdjustModifiers();
+        modifiers = GetComponents<IModifier>().ToList();
     }
 
     public void Slam(Vector3 position, float power)
     {
-        rb.AddForceAtPosition(Vector3.down * power * 5000, position);
+        
+        rb.AddForceAtPosition(Vector3.up * power * 300, position);
+
+        Vector3 newForce = position;
+        newForce.y = this.transform.position.y;
+        newForce.z = Random.Range(newForce.z - 1, newForce.z + 1);
+        newForce.x = Random.Range(newForce.x - 1, newForce.x + 1);
+        newForce.Normalize();
+        rb.AddForce((transform.position - newForce).normalized * 1200 * power);
     }
 
     public bool RigidbodySleeping()
@@ -34,10 +44,18 @@ public class Tazo : MonoBehaviour
         return hasBeenFlipped;
     }
 
+    public void AdjustModifiers()
+    {
+        foreach (IModifier modifier in modifiers)
+        {
+            modifier.TurnEnded();
+        }
+    }
+
     public float GetFinalScore()
     {
         float modifiedScore = scoreValue;
-        foreach(Modifier modifier in modifiers)
+        foreach(IModifier modifier in modifiers)
         {
             modifiedScore = modifier.ModifyScoreValue(modifiedScore);
         }
