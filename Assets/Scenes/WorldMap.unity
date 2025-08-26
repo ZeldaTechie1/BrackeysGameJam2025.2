@@ -536,7 +536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LVLSBoxes: []
-  EnemiesDefeated: 1
+  EnemiesDefeated: 2
 --- !u!114 &1039370004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,7 +1031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6180559340972120036, guid: af570a9fc3e825f43b5c66c3c953a4f9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.018127
+      value: 0.018127441
       objectReference: {fileID: 0}
     - target: {fileID: 6180559340972120036, guid: af570a9fc3e825f43b5c66c3c953a4f9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
