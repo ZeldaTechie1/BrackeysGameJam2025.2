@@ -17,7 +17,6 @@ public class SlammerController : MonoBehaviour
 
     private Vector3 slamPosition;
     private float slamRadius;
-    private bool isCharging = false;
     private float power = 0;
     
 
@@ -50,7 +49,6 @@ public class SlammerController : MonoBehaviour
         {
             power = 0;
             powerMeter.StartCharging();
-            isCharging = true;
             Ray ray = Camera.main.ScreenPointToRay(MousePositionAction.ReadValue<Vector2>());
             RaycastHit hit;
             if(Physics.Raycast(ray,out hit))
