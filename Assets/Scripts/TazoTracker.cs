@@ -7,43 +7,55 @@ using System.Linq;
 
 public class TazoTracker : MonoBehaviour
 {
-    public static Action<List<Tazo>> OnTazosDoneMoving;
+    public static Action<List<Tazo>> TazosDoneMoving;
+    public static Action<bool> KeepPlaying;
 
     [SerializeField] List<Tazo> allTazos;
     [SerializeField] List<Tazo> activeTazos;
 
-    bool hasSlammed;
+    bool checkingForTazosMoving;
 
-    public void Awake()
+    public void Setup()
     {
-        SlammerController.OnSlamComplete += OnSlamCompleted;
+        TurnHandler.WaitingForTazos += OnCheckForMovement;
+        TurnHandler.WaitingForModifiers += OnCheckForMovement;
+        TurnHandler.CheckingIfTazosAreGone += CheckForActiveTazos;
         activeTazos = allTazos;
     }
 
+    
+
     private void Update()
     {
-        if(hasSlammed)
+        if(checkingForTazosMoving)
         {
             bool allRigidbodiesSleeping = true;
+            Debug.Log("Rigidbody bool reset");
             foreach(Tazo t in activeTazos)
             {
-               if(!t.RigidbodySleeping())
+               if(!t.RigidbodySleeping() || t.rb.linearVelocity.magnitude > .01f)
                {
                     allRigidbodiesSleeping = false;
-                    Debug.Log($"{t.name} is still movin'");
+                    Debug.Log($"{t.name} is still movin' with velocity {t.rb.linearVelocity} and angular velocity {t.rb.angularVelocity}");
                }
             }
             if (allRigidbodiesSleeping)
             {
-                OnTazosDoneMoving(activeTazos);
-                hasSlammed = false;
+                checkingForTazosMoving = false;
+                TazosDoneMoving(activeTazos);
             }
         }
     }
 
-    void OnSlamCompleted()
+    void OnCheckForMovement()
     {
-        hasSlammed = true;
+        Debug.Log("Checking for movement");
+        checkingForTazosMoving = true;
         activeTazos = activeTazos.Where(x=>x.gameObject.activeSelf).ToList();
+    }
+
+    void CheckForActiveTazos()
+    {
+        KeepPlaying?.Invoke(activeTazos.Count > 0);
     }
 }

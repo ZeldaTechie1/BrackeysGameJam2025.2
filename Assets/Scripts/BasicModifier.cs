@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BasicModifier : MonoBehaviour, IModifier
 {
-    public string ModifierName { get; set; } = "Default Modifier";
+    public string ModifierName = "Default Modifier";
 
     public virtual float ModifyScoreValue(float score)
     {
@@ -12,7 +12,7 @@ public class BasicModifier : MonoBehaviour, IModifier
         return score;
     }
 
-    public virtual void TurnEnded()
+    public virtual void ActivateModifier()
     {
         Debug.Log($"Not really doing anything.");
     }
@@ -20,8 +20,6 @@ public class BasicModifier : MonoBehaviour, IModifier
 
 public interface IAOEModifier: IModifier
 {
-    float Range { get; set; }
-
     public void GetObjectsInRange();
 }
 
@@ -44,7 +42,7 @@ public interface IOverTimeModifier
 
 public interface ICounterModifier
 {
-    public int Counter { get; set; }
+    [SerializeField]public int Counter { get; set; }
 
     public void AddToCounter() { Counter++; }
     public void RemoveFromCounter() { Counter--; }

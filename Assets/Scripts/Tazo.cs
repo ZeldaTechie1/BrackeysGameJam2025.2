@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class Tazo : MonoBehaviour
 {
@@ -8,12 +9,11 @@ public class Tazo : MonoBehaviour
     List<IModifier> modifiers = new();
 
 
-    Rigidbody rb;
+    public Rigidbody rb;
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        TazoTracker.OnTazosDoneMoving += (x)=> AdjustModifiers();
         modifiers = GetComponents<IModifier>().ToList();
     }
 
@@ -37,6 +37,9 @@ public class Tazo : MonoBehaviour
 
     public bool HasBeenFlipped()
     {
+        if (!gameObject.activeSelf)
+            return false;
+        
         bool hasBeenFlipped = false;
 
         Debug.Log($"{transform.up} {name} has angle of {Vector3.Angle(Vector3.up,transform.up)}");
@@ -44,11 +47,11 @@ public class Tazo : MonoBehaviour
         return hasBeenFlipped;
     }
 
-    public void AdjustModifiers()
+    public void ActivateModifier()
     {
         foreach (IModifier modifier in modifiers)
         {
-            modifier.TurnEnded();
+            modifier.ActivateModifier();
         }
     }
 
@@ -60,6 +63,24 @@ public class Tazo : MonoBehaviour
             modifiedScore = modifier.ModifyScoreValue(modifiedScore);
         }
         return modifiedScore;
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 0;
+        if (transform.position.y < 0)
+        {
+            transform.position = currentPosition;
+        }
+        if(currentPosition.magnitude > 7)
+        {
+            Vector3 newDirection = currentPosition;
+            newDirection.z = Random.Range(newDirection.z - 5, newDirection.z + 5);
+            newDirection.x = Random.Range(newDirection.x - 5, newDirection.x + 5);
+
+            rb.linearVelocity = -newDirection.normalized * rb.linearVelocity.magnitude * .5f;
+        }
     }
 }
 
