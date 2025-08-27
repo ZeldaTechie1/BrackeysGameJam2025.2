@@ -6,8 +6,9 @@ using System.Linq;
 public class LevelSelectionBox : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    
+    [SerializeField]
     private Image CharacterPortrait;
+    [SerializeField]
     private TextMeshProUGUI CharacterNameText;
     [SerializeField]
     private  Sprite DefaultPortrait;
@@ -28,20 +29,7 @@ public class LevelSelectionBox : MonoBehaviour
 
     void Awake()
     {
-        System.Collections.Generic.IEnumerable<Image> SceneObjects = this.gameObject.GetComponentsInChildren<Image>().Where(go => go.gameObject != this.gameObject);
-
-        foreach (Image image in SceneObjects)
-        {
-            if(image!=this.gameObject.GetComponent<Image>())
-            {
-                CharacterPortrait = image;
-            }
-        }
-
-
-       
-        CharacterNameText=GetComponentInChildren<TextMeshProUGUI>();
-        Debug.Log("BEEP");
+        
         
     }
     private void Start()

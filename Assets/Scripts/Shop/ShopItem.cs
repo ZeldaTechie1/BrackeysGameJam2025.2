@@ -7,25 +7,22 @@ using UnityEngine.UI;
 public class ShopItem : MonoBehaviour
 {
     [SerializeField]
-    private Image Portrait;
-    [SerializeField]
-    private TextMeshProUGUI ItemNameText;
-    [SerializeField]
     private string ItemDescription;
-
+    [SerializeField]
+    private string ItemName;
+    [SerializeField]
     public GameObject Item;
 
+  
 
-    private string ItemName;
+    private Toggle toggle;
    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetUp();
-
-
-
+        toggle= this.GetComponent<Toggle>();
     }
 
     // Update is called once per frame
@@ -34,19 +31,36 @@ public class ShopItem : MonoBehaviour
         
     }
 
+
     void SetUp()
     {
-        try
-        {
-            ItemName = ItemNameText.text; 
-            
-        }
-        catch(Exception ex) 
-        {
-            Debug.LogException(ex);
 
-        }
 
     }
 
+   public string GetItemName()
+   {
+        return ItemName;
+   }
+    public string GetItemDescrption()
+    {
+        return ItemDescription;
+    }
+
+    public void SelectItem()
+    {
+       
+
+        if(toggle!=null&&toggle.isOn)
+        {
+            ShopEventManager.Items.SelectItem(this);
+            toggle.group.SetAllTogglesOff(false);
+        }
+        else if (toggle!=null&&!toggle.isOn) 
+        {
+            ShopEventManager.Items.DeselectItem(true);
+          
+        }
+
+    }
 }
