@@ -79,7 +79,7 @@ public class Tazo : MonoBehaviour
             newDirection.z = Random.Range(newDirection.z - 5, newDirection.z + 5);
             newDirection.x = Random.Range(newDirection.x - 5, newDirection.x + 5);
 
-            rb.linearVelocity = -newDirection.normalized * rb.linearVelocity.magnitude;
+            rb.linearVelocity = -newDirection.normalized * rb.linearVelocity.magnitude * .5f;
         }
     }
 }
