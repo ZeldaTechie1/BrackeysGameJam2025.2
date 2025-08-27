@@ -1,10 +1,13 @@
+using DG.Tweening;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SlammerController : MonoBehaviour
 {
-    public static Action OnSlamComplete;
+    public static Action SlamCompleted;
+
+    public int player { get; private set; } = -1;
 
     [SerializeField] ScoreController scoreController;
     [SerializeField] InputActionAsset InputActions;
@@ -18,8 +21,14 @@ public class SlammerController : MonoBehaviour
     private Vector3 slamPosition;
     private float slamRadius;
     private float power = 0;
-    
+    private bool isSlamming = false;
 
+    public void Setup()
+    {
+        LeftMouseButtonAction = InputSystem.actions.FindAction("Attack");
+        MousePositionAction = InputSystem.actions.FindAction("MousePosition");
+        TurnHandler.PlayerStartSlam += OnPlayerStartSlam;
+    }
 
     private void OnEnable()
     {
@@ -36,15 +45,25 @@ public class SlammerController : MonoBehaviour
         }
     }
 
-    private void Awake()
+    void OnPlayerStartSlam()
     {
-        LeftMouseButtonAction = InputSystem.actions.FindAction("Attack");
-        MousePositionAction = InputSystem.actions.FindAction("MousePosition");
+        isSlamming = true;
+        player++;
+        player = (int)Mathf.Repeat(player, 2);
+        Debug.Log($"Player is {player}");
+        if(player == 1)
+        {
+            DoNPCTurn();
+        }
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (player != 0) return;
+
+        if (!isSlamming) return;
+
         if(!powerMeter.isCharging && LeftMouseButtonAction.WasPressedThisFrame())
         {
             power = 0;
@@ -63,11 +82,11 @@ public class SlammerController : MonoBehaviour
             float difference = slammerMaxRadius - slammerMinRadius;
             float influence = difference * power;
             slamRadius = slammerMinRadius + influence;
-            ShootSlammer(slamRadius,slamPosition);
+            ShootSlammer(slamRadius,slamPosition,power);
         }
     }
 
-    private void ShootSlammer(float radius, Vector3 location)
+    private void ShootSlammer(float radius, Vector3 location, float power)
     {
         Vector3 slamSpherecastPosition = location;
         slamSpherecastPosition.y = 100000;
@@ -83,12 +102,27 @@ public class SlammerController : MonoBehaviour
                 currentTazo.Slam(slamSpherecastPosition, power);
             }
         }
-        OnSlamComplete();
+        isSlamming = false;
+        SlamCompleted();
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(slamPosition, slamRadius);
+    }
+    
+    void DoNPCTurn()
+    {
+        DOTween.Sequence()
+            .AppendCallback(() =>
+            {
+                Debug.Log("Doing npc turn");
+            })
+            .AppendInterval(1f)
+            .AppendCallback(() =>
+            {
+                ShootSlammer(slamRadius,Vector3.zero, 5);
+            });
     }
 }

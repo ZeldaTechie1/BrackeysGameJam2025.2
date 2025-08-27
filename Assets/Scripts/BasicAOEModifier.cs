@@ -4,12 +4,23 @@ using System.Collections.Generic;
 
 public class BasicAOEModifier : MonoBehaviour, IAOEModifier
 {
-    public float Range { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public string ModifierName { get; set; } = "Default AOE Modifier";
-
+    public float Range;
+    public string ModifierName = "Default AOE Modifier";
+    
+    protected List<Tazo> validTazosInRange = new();
     public virtual void GetObjectsInRange()
     {
-        Debug.Log($"Not really doing anything.");
+        Collider[] objectsInRange = Physics.OverlapSphere(transform.position, Range);
+        validTazosInRange.Clear();
+        foreach (Collider collider in objectsInRange)
+        {
+            Tazo t = null;
+            collider.TryGetComponent<Tazo>(out t);
+            if (t != null)
+            {
+                validTazosInRange.Add(t);
+            }
+        }
     }
 
     public virtual float ModifyScoreValue(float score)
@@ -19,7 +30,7 @@ public class BasicAOEModifier : MonoBehaviour, IAOEModifier
         return score;
     }
 
-    public virtual void TurnEnded()
+    public virtual void ActivateModifier()
     {
         GetObjectsInRange();
     }
