@@ -8,7 +8,7 @@ public class PowerMeter : MonoBehaviour
 {
     [SerializeField] public bool isCharging { get; private set; }
 
-    [SerializeField]float currentPower;
+    [SerializeField]public float currentPower { get; private set; }
     Tween currentChargingTween;
 
     public void StartCharging()

@@ -9,10 +9,10 @@ public class TazoTracker : MonoBehaviour
 {
     public static Action<List<Tazo>> TazosDoneMoving;
     public static Action<bool> KeepPlaying;
+    public GameObject TazoContainer;
+    public List<Tazo> activeTazos { get; private set; }
 
     [SerializeField] List<Tazo> allTazos;
-    [SerializeField] List<Tazo> activeTazos;
-
     bool checkingForTazosMoving;
 
     public void Setup()
@@ -20,10 +20,15 @@ public class TazoTracker : MonoBehaviour
         TurnHandler.WaitingForTazos += OnCheckForMovement;
         TurnHandler.WaitingForModifiers += OnCheckForMovement;
         TurnHandler.CheckingIfTazosAreGone += CheckForActiveTazos;
+        TurnHandler.PlayerStartSlam += UpdateActiveTazos;
+        allTazos = TazoContainer.GetComponentsInChildren<Tazo>().ToList();
         activeTazos = allTazos;
     }
 
-    
+    private void UpdateActiveTazos()
+    {
+        activeTazos = activeTazos.Where(x => x.gameObject.activeSelf).ToList();
+    }
 
     private void Update()
     {
@@ -51,7 +56,6 @@ public class TazoTracker : MonoBehaviour
     {
         Debug.Log("Checking for movement");
         checkingForTazosMoving = true;
-        activeTazos = activeTazos.Where(x=>x.gameObject.activeSelf).ToList();
     }
 
     void CheckForActiveTazos()

@@ -1,7 +1,9 @@
 using DG.Tweening;
+using NUnit.Framework;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class SlammerController : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class SlammerController : MonoBehaviour
     [SerializeField] PowerMeter powerMeter;
     [SerializeField] private float slammerMaxRadius;
     [SerializeField] private float slammerMinRadius;
+    [SerializeField] AimIndicator aimIndicator;
+    [SerializeField] TazoTracker tazoTracker;
 
     private InputAction LeftMouseButtonAction;
     private InputAction MousePositionAction;
@@ -51,7 +55,8 @@ public class SlammerController : MonoBehaviour
         player++;
         player = (int)Mathf.Repeat(player, 2);
         Debug.Log($"Player is {player}");
-        if(player == 1)
+        aimIndicator.gameObject.SetActive(true);
+        if (player == 1)
         {
             DoNPCTurn();
         }
@@ -60,28 +65,37 @@ public class SlammerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (player != 0) return;
-
         if (!isSlamming) return;
 
-        if(!powerMeter.isCharging && LeftMouseButtonAction.WasPressedThisFrame())
+        if(powerMeter.isCharging)
+        {
+            slamRadius = CalculateSlamRadius(powerMeter.currentPower);
+            Debug.Log(slamRadius);
+            aimIndicator.SetIndicatorSize(slamRadius);
+        }
+        else
+        {
+            if (player == 0)
+            {
+                Ray ray = Camera.main.ScreenPointToRay(MousePositionAction.ReadValue<Vector2>());
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit))
+                {
+                    slamPosition = hit.point;
+                    aimIndicator.SetIndicatorPosition(slamPosition);
+                }
+            }
+        }
+
+        if (!powerMeter.isCharging && LeftMouseButtonAction.WasPressedThisFrame())
         {
             power = 0;
             powerMeter.StartCharging();
-            Ray ray = Camera.main.ScreenPointToRay(MousePositionAction.ReadValue<Vector2>());
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit))
-            {
-                slamPosition = hit.point;
-            }
         }
 
         if(powerMeter.isCharging && LeftMouseButtonAction.WasReleasedThisFrame())
         {
             power = powerMeter.StopCharging();
-            float difference = slammerMaxRadius - slammerMinRadius;
-            float influence = difference * power;
-            slamRadius = slammerMinRadius + influence;
             ShootSlammer(slamRadius,slamPosition,power);
         }
     }
@@ -103,6 +117,8 @@ public class SlammerController : MonoBehaviour
             }
         }
         isSlamming = false;
+        aimIndicator.gameObject.SetActive(false);
+        aimIndicator.SetIndicatorSize(1);
         SlamCompleted();
     }
 
@@ -114,15 +130,64 @@ public class SlammerController : MonoBehaviour
     
     void DoNPCTurn()
     {
-        DOTween.Sequence()
+        Vector3 calculatedSlamPosition = Vector3.zero;
+        foreach (Tazo t in tazoTracker.activeTazos)
+        {
+            calculatedSlamPosition += t.transform.position;
+        }
+        calculatedSlamPosition /= tazoTracker.activeTazos.Count;
+
+        Vector3 fakeAimingPosition = Vector3.zero;
+
+        Sequence npcSequence = DOTween.Sequence()
             .AppendCallback(() =>
-            {
-                Debug.Log("Doing npc turn");
-            })
+             {
+                 Debug.Log("Doing npc turn");
+             });
+
+        //aiming section
+        List<Vector3> aimPoints = new();
+        int randAimPoints = UnityEngine.Random.Range(1,3);
+        for (int i = 0; i < randAimPoints; i++)
+        {
+            aimPoints.Add(new Vector3(UnityEngine.Random.Range(calculatedSlamPosition.x - 2, calculatedSlamPosition.x + 2), calculatedSlamPosition.y, UnityEngine.Random.Range(calculatedSlamPosition.z - 2, calculatedSlamPosition.z + 2)));
+        }
+        aimPoints.Add(calculatedSlamPosition);
+
+        foreach (Vector3 point in aimPoints)
+        {
+            npcSequence.Append(DOTween.To(() => fakeAimingPosition, x => fakeAimingPosition = x, point,1f).SetEase(Ease.Linear).OnUpdate(()=>aimIndicator.SetIndicatorPosition(fakeAimingPosition)));
+        }
+
+        //charging section
+        float chargeTime = UnityEngine.Random.Range(1f,3f);
+        npcSequence
             .AppendInterval(1f)
+            .AppendCallback(() => 
+            {
+                powerMeter.StartCharging();
+            })
+            .AppendInterval(chargeTime)
             .AppendCallback(() =>
             {
-                ShootSlammer(slamRadius,Vector3.zero, 5);
+                power = powerMeter.StopCharging();
+            })
+            .AppendInterval(0)//this waits exactly a frame
+            .AppendCallback(() =>
+            {
+                Debug.Log($"Power {power}");
+                ShootSlammer(slamRadius, calculatedSlamPosition, power);
             });
     }
+
+    float CalculateSlamRadius(float power)
+    {
+        float radius;
+        float difference = slammerMaxRadius - slammerMinRadius;
+        float influence = difference * power;
+        radius = slammerMinRadius + influence;
+        return radius;
+
+    }
 }
+

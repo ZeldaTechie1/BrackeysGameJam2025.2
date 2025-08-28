@@ -51,13 +51,13 @@ public class TurnHandler : MonoBehaviour
         SetupControllers();
 
         currentState = TurnState.ShowingPlayers;
-        Debug.Log("Showing Players");
+        Debug.Log("Turn: Showing Players");
         ShowingPlayers?.Invoke();
     }
 
     public void SetupControllers()
     {
-        Debug.Log("Setting up controllers");
+        Debug.Log("Turn: Setting up controllers");
         scoreController.Setup();
         tazoTracker.Setup();
         slammerController.Setup();
@@ -65,37 +65,37 @@ public class TurnHandler : MonoBehaviour
 
     void OnFinishedIntro()
     {
-        Debug.Log("PlayerSlam");
+        Debug.Log("Turn: PlayerSlam");
         currentState = TurnState.PlayerStartSlam;
         PlayerStartSlam?.Invoke();
     }
 
     private void OnSlamCompleted()
     {
-        Debug.Log("Slam Completed, waiting for Tazos");
+        Debug.Log("Turn: Slam Completed, waiting for Tazos");
         currentState = TurnState.WaitingForTazos;
         WaitingForTazos?.Invoke();
     }
 
     private void OnTazosDoneMoving(List<Tazo> activeTazos)
     {
-        Debug.Log("Tazos done moving");
+        Debug.Log("Turn: Tazos done moving");
         if (currentState == TurnState.WaitingForTazos)
         {
-            Debug.Log("Activating Modifiers");
+            Debug.Log("Turn: Activating Modifiers");
             currentState = TurnState.ActivatingModifiers;
             ActivatingModifiers?.Invoke();
             foreach (Tazo t in activeTazos)
             {
                 t.ActivateModifier();
             }
-            Debug.Log("Waiting for Tazos again");
+            Debug.Log("Turn: Waiting for Tazos again");
             currentState = TurnState.WaitingForModifiers;
             DOTween.Sequence().AppendInterval(.1f).AppendCallback(() => WaitingForModifiers?.Invoke());
         }
         else if (currentState == TurnState.WaitingForModifiers)
         {
-            Debug.Log("Scoring Tazos");
+            Debug.Log("Turn: Scoring Tazos");
             currentState = TurnState.ScoringTazos;
             ScoringTazos?.Invoke(activeTazos);
         }
@@ -104,7 +104,7 @@ public class TurnHandler : MonoBehaviour
     private void OnDoneScoring()
     {
         currentState = TurnState.CheckingIfTazosAreGone;
-        Debug.Log("Checking for Tazos");
+        Debug.Log("Turn: Checking for Tazos");
         CheckingIfTazosAreGone?.Invoke();
     }
 
@@ -112,12 +112,12 @@ public class TurnHandler : MonoBehaviour
     {
         if(keepPlaying)
         {
-            Debug.Log("Next Player!");
+            Debug.Log("Turn: Next Player!");
             currentState = TurnState.PlayerStartSlam;
             PlayerStartSlam?.Invoke();
             return;
         }
-
+        Debug.Log("Turn: Checking For Winner!");
         currentState = TurnState.CheckingForWinner;
         CheckingForWinner?.Invoke();
     }
@@ -126,11 +126,11 @@ public class TurnHandler : MonoBehaviour
     {
         if(playerID == -1)
         {
-            Debug.Log("It's a tie!");
+            Debug.Log("Turn: It's a tie!");
         }
         else
         {
-            Debug.Log($"Winner is {playerID}");
+            Debug.Log($"Turn: Winner is {playerID}");
         }
         Application.Quit();
     }
