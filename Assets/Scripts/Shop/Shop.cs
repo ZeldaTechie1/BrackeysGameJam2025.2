@@ -20,7 +20,7 @@ public class Shop : MonoBehaviour
 
     List<GameObject> ItemsForSale = new List<GameObject>();
     //Shop Displays
-    [Space(10)]
+    [Space(15)]
     [Header("Shop Displays")]
     [SerializeField]
     GameObject ShopItemsDisplay;
@@ -32,14 +32,41 @@ public class Shop : MonoBehaviour
     Button BuyButton;
     [SerializeField]
     GameObject BackStage;
+    [SerializeField]
+    ToggleGroup TGroup;
 
+    [Space(15)]
 
     [Header("Bag Open")]
     [SerializeField]
     VideoPlayer BagOpenPlayer;
 
+    [Header("Tazo Get")]
     [SerializeField]
-    ToggleGroup TGroup;
+    GameObject TazoGetParent;
+
+    [Space(5)]
+    [field: Header("Tazo Display")]
+    [SerializeField]
+    TazoDisplay TazoDisplay;
+    [SerializeField]
+    GameObject TazoNameDisplay;
+    [SerializeField]
+    GameObject TazoDescriptionDisplay;
+    [SerializeField]
+    Button AcceptButton;
+
+
+    [field:Header("Conffeti Particles")]
+    [SerializeField]
+    ParticleSystem PuffParticle;
+    [SerializeField]
+    ParticleSystem PotatoParticle;
+    [SerializeField]
+    ParticleSystem TortillaParticle;
+
+
+
     [Space(10)]
     [Header("Player Data")]
     [SerializeField]
@@ -55,6 +82,10 @@ public class Shop : MonoBehaviour
     TextMeshProUGUI Name;
     TextMeshProUGUI Description;
 
+    TextMeshProUGUI TazoName;
+    TextMeshProUGUI TazoDescription;
+
+    TazoItem PulledTazo;
 
 
     private void OnEnable()
@@ -73,9 +104,17 @@ public class Shop : MonoBehaviour
     {
         TGroup = GetComponent<ToggleGroup>();
         PopulateShop();
+        //Shop UI Set
         Name =ItemNameDisplay.GetComponent<TextMeshProUGUI>();
         Description=ItemDescriptionDisplay.GetComponent<TextMeshProUGUI>();
+        //Tazo UI Set
+        TazoName = TazoNameDisplay.GetComponent<TextMeshProUGUI>();
+        TazoDescription = TazoDescriptionDisplay.GetComponent<TextMeshProUGUI>();
+        
         BagOpenPlayer.loopPointReached += EndReached;
+
+        ToggleHideTazoDisplay(true);
+
 
     }
 
@@ -83,14 +122,7 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SelectedItem==null)
-        {
-            BuyButton.enabled= false;
-        }
-        else
-        {
-            BuyButton.enabled = true;
-        }
+      
     }
 
     void PopulateShop()
@@ -132,6 +164,8 @@ public class Shop : MonoBehaviour
         SelectedItem = null;
         Name.enabled = false;
         Description.enabled = false;
+        BuyButton.enabled = false;
+
     }
 
 
@@ -144,24 +178,44 @@ public class Shop : MonoBehaviour
 
         Name.enabled = true;
         Description.enabled = true;
+        BuyButton.enabled = true;
+    }
+
+    public void GetTazoFromBag()
+    {
+        PulledTazo=SelectedItem.PullTazo();
+
+        if (PulledTazo != null) 
+        {
+
+            TazoName.SetText(PulledTazo.GetName());
+            TazoDescription.SetText(PulledTazo.GetDescription());
+            var top= PulledTazo.GetTopMaterial();
+            var bottom= PulledTazo.GetBottomMaterial();
+            TazoDisplay.SetMaterials(top, bottom);
+        }
+
     }
 
     public void BuyItem()
     {
         //PlayerData.AddToInventory(SelectedItem.);
+       
         BagOpenPlayer.Play();
-        ToggleShopDisplay(true);
-
-
+        GetTazoFromBag();
+        ToggleHideShopDisplay(true);
+        
     }
 
     void EndReached(UnityEngine.Video.VideoPlayer vp)
     {
         vp.Stop();
-        ToggleShopDisplay(false);
-    }
+        ToggleHideTazoDisplay(false);
 
-    public void ToggleShopDisplay(bool toggle)
+        //ToggleShopDisplay(false);
+    }
+    // True Hides the Display False Shows it
+    public void ToggleHideShopDisplay(bool toggle)
     {
         if(toggle)
         {
@@ -172,6 +226,34 @@ public class Shop : MonoBehaviour
         {
             ItemNameDisplay.transform.parent = this.transform;
             ShopItemsDisplay.transform.parent = this.transform;
+        }
+
+    }
+
+    // True Hides the Display False Shows it
+    public void ToggleHideTazoDisplay(bool toggle)
+    {
+        if (toggle)
+        {
+            TazoGetParent.transform.parent = BackStage.transform;
+
+        }
+        else
+        {
+            TazoGetParent.transform.parent = this.transform;
+            TazoDisplay.Flip();
+            switch (SelectedItem.ChipBag.GetChipType())
+            {
+                case ChipType.Potato:
+                    PotatoParticle.Play();
+                    break;
+                case ChipType.Tortilla:
+                    TortillaParticle.Play();
+                    break;
+                case ChipType.Puff:
+                    PuffParticle.Play();
+                    break;
+            }
         }
 
     }

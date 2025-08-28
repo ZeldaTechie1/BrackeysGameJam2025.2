@@ -14,11 +14,15 @@ public class ChipBag : ScriptableObject
     private string Description;
     [SerializeField]
     private string EffectName;
+
+    [SerializeField]
+    private ChipType ChipType;
+
     [SerializeField]
     private Sprite BagPortrait;
 
     [SerializeField]
-    List<GameObject> PossibleTazos = new List<GameObject>();
+    List<TazoItem> PossibleTazos = new List<TazoItem>();
 
 
     public string GetName()
@@ -39,23 +43,18 @@ public class ChipBag : ScriptableObject
         return BagPortrait;
     }
 
-    public GameObject GetRandomTasso()
+    public ChipType GetChipType()
+    {
+        return ChipType;
+    }
+
+    public TazoItem GetRandomTazo()
     {
 
-        GameObject Tazo=null;
+        TazoItem Tazo =null;
         if (PossibleTazos.Count > 0)
         {
-            for (int i = 0; i < PossibleTazos.Count; i++)
-            {
-
-                var TazoCompoenent = PossibleTazos[i].GetComponent<Tazo>();
-
-                if (TazoCompoenent == null)
-                {
-                    PossibleTazos.Remove(PossibleTazos[i]);
-                }
-            }
-
+          
             Tazo=PossibleTazos[Random.Range(0, PossibleTazos.Count)];
 
         }
@@ -67,4 +66,11 @@ public class ChipBag : ScriptableObject
     
     
 
+}
+
+public enum ChipType
+{
+    Potato,
+    Tortilla,
+    Puff,
 }

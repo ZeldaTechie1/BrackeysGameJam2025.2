@@ -63,4 +63,9 @@ public class ShopItem : MonoBehaviour
         }
 
     }
+
+    public TazoItem PullTazo()
+    {
+        return ChipBag.GetRandomTazo();
+    }
 }
