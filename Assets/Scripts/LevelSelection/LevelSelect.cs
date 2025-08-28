@@ -9,7 +9,7 @@ public class LevelSelect : MonoBehaviour
     private List<LevelSelectionBox> LVLSBoxes = new List<LevelSelectionBox>();
 
     [SerializeField]
-    int EnemiesDefeated = 0;
+    PlayerData Player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
    
@@ -45,11 +45,11 @@ public class LevelSelect : MonoBehaviour
     }
     public void LevelBoxSetUp()
     {
-        if (LVLSBoxes.Count > 0 && LVLSBoxes.Count > EnemiesDefeated)
+        if (LVLSBoxes.Count > 0 && LVLSBoxes.Count > Player.GetWins())
         {
             foreach (LevelSelectionBox LvlsBox in LVLSBoxes)
             {
-                if (LvlsBox.LevelID >= EnemiesDefeated)
+                if (LvlsBox.LevelID >= Player.GetWins())
                 {
                     LvlsBox.SetDefaultPortrait();
                 }
@@ -66,11 +66,11 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if(LVLSBoxes.Count > 0&&LVLSBoxes.Count>EnemiesDefeated) 
+        if(LVLSBoxes.Count > 0&&LVLSBoxes.Count> Player.GetWins()) 
         {
             foreach(LevelSelectionBox LvlsBox in LVLSBoxes)
             {
-                if (LvlsBox.LevelID == EnemiesDefeated) 
+                if (LvlsBox.LevelID == Player.GetWins()) 
                 {
 
                     Debug.Log("Load Level:" +LvlsBox.LevelName);

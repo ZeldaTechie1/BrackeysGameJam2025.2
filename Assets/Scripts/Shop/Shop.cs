@@ -1,37 +1,60 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Shop : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    // Shop Options
+    [Header("Shop Settings")]
     [SerializeField]
     int NumberForSale = 3;
     [SerializeField]
-    GameObject ShopItemsDisplay;
+    List<ChipBag> ShopInventory = new List<ChipBag>();
+    [SerializeField]
+    GameObject BaseItem;
 
+    List<GameObject> ItemsForSale = new List<GameObject>();
+    //Shop Displays
+    [Space(10)]
+    [Header("Shop Displays")]
+    [SerializeField]
+    GameObject ShopItemsDisplay;
     [SerializeField]
     GameObject ItemNameDisplay;
-
     [SerializeField]
     GameObject ItemDescriptionDisplay;
-
-
     [SerializeField]
-    List<GameObject> ShopInventory = new List<GameObject>();
+    Button BuyButton;
+    [SerializeField]
+    GameObject BackStage;
 
-    List<GameObject> ItemsForSale= new List<GameObject>();
+
+    [Header("Bag Open")]
+    [SerializeField]
+    VideoPlayer BagOpenPlayer;
 
     [SerializeField]
     ToggleGroup TGroup;
+    [Space(10)]
+    [Header("Player Data")]
+    [SerializeField]
+    PlayerData PlayerData;
+
+    [Space(10)]
+   
+
+
 
     ShopItem SelectedItem;
 
     TextMeshProUGUI Name;
     TextMeshProUGUI Description;
+
 
 
     private void OnEnable()
@@ -52,6 +75,7 @@ public class Shop : MonoBehaviour
         PopulateShop();
         Name =ItemNameDisplay.GetComponent<TextMeshProUGUI>();
         Description=ItemDescriptionDisplay.GetComponent<TextMeshProUGUI>();
+        BagOpenPlayer.loopPointReached += EndReached;
 
     }
 
@@ -59,6 +83,14 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(SelectedItem==null)
+        {
+            BuyButton.enabled= false;
+        }
+        else
+        {
+            BuyButton.enabled = true;
+        }
     }
 
     void PopulateShop()
@@ -80,16 +112,24 @@ public class Shop : MonoBehaviour
         for (int i = 0; i < NumberForSale; i++)
         {
             int X = Random.Range(0, ShopInventory.Count);
-            GameObject item = Instantiate(ShopInventory[X], ShopItemsDisplay.transform);
+            GameObject item = Instantiate(BaseItem, ShopItemsDisplay.transform);
+            
+            ShopItem shopItem = item.GetComponent<ShopItem>();
 
-            ItemsForSale.Add(item);
+            if(shopItem != null)
+            {
+
+                shopItem.ChipBag = ShopInventory[X];
+                shopItem.SetUp();
+                ItemsForSale.Add(item);
+            }
+        
         }
     }
 
     public void DeselectItem(bool holder)
     {
         SelectedItem = null;
-
         Name.enabled = false;
         Description.enabled = false;
     }
@@ -104,6 +144,36 @@ public class Shop : MonoBehaviour
 
         Name.enabled = true;
         Description.enabled = true;
+    }
+
+    public void BuyItem()
+    {
+        //PlayerData.AddToInventory(SelectedItem.);
+        BagOpenPlayer.Play();
+        ToggleShopDisplay(true);
+
+
+    }
+
+    void EndReached(UnityEngine.Video.VideoPlayer vp)
+    {
+        vp.Stop();
+        ToggleShopDisplay(false);
+    }
+
+    public void ToggleShopDisplay(bool toggle)
+    {
+        if(toggle)
+        {
+            ItemNameDisplay.transform.parent = BackStage.transform;
+            ShopItemsDisplay.transform.parent = BackStage.transform;
+        }
+        else
+        {
+            ItemNameDisplay.transform.parent = this.transform;
+            ShopItemsDisplay.transform.parent = this.transform;
+        }
+
     }
 
 }

@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
+
     [SerializeField]
-    private string ItemDescription;
+    public ChipBag ChipBag;
+
     [SerializeField]
-    private string ItemName;
-    [SerializeField]
-    public GameObject Item;
+    public Image BagImage;
 
   
 
@@ -32,19 +32,19 @@ public class ShopItem : MonoBehaviour
     }
 
 
-    void SetUp()
+    public void SetUp()
     {
-
+        BagImage.sprite = ChipBag.GetSprite();
 
     }
 
    public string GetItemName()
    {
-        return ItemName;
+        return ChipBag.GetName();
    }
     public string GetItemDescrption()
     {
-        return ItemDescription;
+        return ChipBag.GetDescription();
     }
 
     public void SelectItem()

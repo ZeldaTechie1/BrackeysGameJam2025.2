@@ -90,9 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69559f30c3565264a83c1e3e79bed595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemDescription: A Bag Of Chips
-  ItemName: Chips
-  Item: {fileID: 0}
+  ChipBag: {fileID: 0}
+  BagImage: {fileID: 4447038793144278425}
 --- !u!114 &7476461486117040296
 MonoBehaviour:
   m_ObjectHideFlags: 0

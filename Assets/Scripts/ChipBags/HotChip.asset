@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6bdc2142f5b5694f8407d18cb3b25c5, type: 3}
+  m_Name: HotChip
+  m_EditorClassIdentifier: 
+  Name: Hot Chip
+  Description: Very Hot Chips
+  EffectName: HotChip
+  BagPortrait: {fileID: 1404175194, guid: d34957922e847cb499bccbe0a9c2a375, type: 3}
+  PossibleTazos: []

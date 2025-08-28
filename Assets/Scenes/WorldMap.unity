@@ -538,7 +538,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LVLSBoxes: []
-  EnemiesDefeated: 2
+  Player: {fileID: 11400000, guid: 650eee1bac06a744091ac918400f3ba7, type: 2}
 --- !u!114 &1039370004
 MonoBehaviour:
   m_ObjectHideFlags: 0
