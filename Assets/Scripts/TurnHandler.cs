@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -90,7 +91,7 @@ public class TurnHandler : MonoBehaviour
             }
             Debug.Log("Waiting for Tazos again");
             currentState = TurnState.WaitingForModifiers;
-            WaitingForModifiers?.Invoke();
+            DOTween.Sequence().AppendInterval(.1f).AppendCallback(() => WaitingForModifiers?.Invoke());
         }
         else if (currentState == TurnState.WaitingForModifiers)
         {

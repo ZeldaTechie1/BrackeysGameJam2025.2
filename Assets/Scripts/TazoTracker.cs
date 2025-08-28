@@ -30,10 +30,10 @@ public class TazoTracker : MonoBehaviour
         if(checkingForTazosMoving)
         {
             bool allRigidbodiesSleeping = true;
-            Debug.Log("Rigidbody bool reset");
+            //Debug.Log("Rigidbody bool reset");
             foreach(Tazo t in activeTazos)
             {
-               if(!t.RigidbodySleeping() || t.rb.linearVelocity.magnitude > .01f)
+               if(t.rb.linearVelocity.magnitude > .01f || t.rb.angularVelocity.magnitude > .01f)
                {
                     allRigidbodiesSleeping = false;
                     Debug.Log($"{t.name} is still movin' with velocity {t.rb.linearVelocity} and angular velocity {t.rb.angularVelocity}");

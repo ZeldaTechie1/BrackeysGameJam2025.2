@@ -16,7 +16,7 @@ public class BasicAOEModifier : MonoBehaviour, IAOEModifier
         {
             Tazo t = null;
             collider.TryGetComponent<Tazo>(out t);
-            if (t != null)
+            if (t != null && t.gameObject != this.gameObject)
             {
                 validTazosInRange.Add(t);
             }
