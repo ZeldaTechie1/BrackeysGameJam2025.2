@@ -9,7 +9,7 @@ PhysicsMaterial:
   m_Name: DefaultTazo
   serializedVersion: 2
   m_DynamicFriction: 0.001
-  m_StaticFriction: 0.2
+  m_StaticFriction: 0.08
   m_Bounciness: 0.4
   m_FrictionCombine: 0
   m_BounceCombine: 0

@@ -1,19 +1,33 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+
+public enum Series
+{
+    Halloween,
+    Pets
+}
+
+[Flags]
+public enum StatusEffects
+{
+    Hairy
+}
+
 
 public class Tazo : MonoBehaviour
 {
+    public Rigidbody rb;
+    public Series series;
+    public string Owner;
+
     [SerializeField] float scoreValue;
     List<IModifier> modifiers = new();
-
-
-    Rigidbody rb;
 
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        TazoTracker.OnTazosDoneMoving += (x)=> AdjustModifiers();
         modifiers = GetComponents<IModifier>().ToList();
     }
 
@@ -24,8 +38,8 @@ public class Tazo : MonoBehaviour
 
         Vector3 newForce = position;
         newForce.y = this.transform.position.y;
-        newForce.z = Random.Range(newForce.z - 1, newForce.z + 1);
-        newForce.x = Random.Range(newForce.x - 1, newForce.x + 1);
+        newForce.z = UnityEngine.Random.Range(newForce.z - 1, newForce.z + 1);
+        newForce.x = UnityEngine.Random.Range(newForce.x - 1, newForce.x + 1);
         newForce.Normalize();
         rb.AddForce((transform.position - newForce).normalized * 1200 * power);
     }
@@ -37,18 +51,19 @@ public class Tazo : MonoBehaviour
 
     public bool HasBeenFlipped()
     {
+        if (!gameObject.activeSelf)
+            return false;
+        
         bool hasBeenFlipped = false;
-
-        Debug.Log($"{transform.up} {name} has angle of {Vector3.Angle(Vector3.up,transform.up)}");
         hasBeenFlipped = Vector3.Angle(Vector3.up, transform.up) > 90;
         return hasBeenFlipped;
     }
 
-    public void AdjustModifiers()
+    public void ActivateModifier()
     {
         foreach (IModifier modifier in modifiers)
         {
-            modifier.TurnEnded();
+            modifier.ActivateModifier();
         }
     }
 
@@ -60,6 +75,24 @@ public class Tazo : MonoBehaviour
             modifiedScore = modifier.ModifyScoreValue(modifiedScore);
         }
         return modifiedScore;
+    }
+
+    void FixedUpdate()
+    {
+        Vector3 currentPosition = transform.position;
+        currentPosition.y = 0;
+        if (transform.position.y < 0)
+        {
+            transform.position = currentPosition;
+        }
+        if(currentPosition.magnitude > 5)
+        {
+            Vector3 newDirection = currentPosition;
+            newDirection.z = UnityEngine.Random.Range(newDirection.z - 5, newDirection.z + 5);
+            newDirection.x = UnityEngine.Random.Range(newDirection.x - 5, newDirection.x + 5);
+
+            rb.linearVelocity = -newDirection.normalized * rb.linearVelocity.magnitude * .8f;
+        }
     }
 }
 
