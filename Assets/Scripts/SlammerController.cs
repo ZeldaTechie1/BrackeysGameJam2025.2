@@ -18,6 +18,7 @@ public class SlammerController : MonoBehaviour
     [SerializeField] private float slammerMinRadius;
     [SerializeField] AimIndicator aimIndicator;
     [SerializeField] TazoTracker tazoTracker;
+    [SerializeField] Camera aimCamera;
 
     private InputAction LeftMouseButtonAction;
     private InputAction MousePositionAction;
@@ -77,7 +78,11 @@ public class SlammerController : MonoBehaviour
         {
             if (player == 0)
             {
-                Ray ray = Camera.main.ScreenPointToRay(MousePositionAction.ReadValue<Vector2>());
+                Vector3 modifiedScreenSpace = Mouse.current.position.ReadValue();
+                modifiedScreenSpace.x /= 2.25f;
+                modifiedScreenSpace.x -= 106.666f;
+                modifiedScreenSpace.y /= 2.25f;
+                Ray ray = aimCamera.ScreenPointToRay(modifiedScreenSpace);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
