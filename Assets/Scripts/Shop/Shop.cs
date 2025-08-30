@@ -90,7 +90,6 @@ public class Shop : MonoBehaviour
 
     private void OnEnable()
     {
-       
         ShopEventManager.Items.SelectItem += SelectItem;
         ShopEventManager.Items.DeselectItem += DeselectItem;
     }
@@ -114,7 +113,7 @@ public class Shop : MonoBehaviour
         BagOpenPlayer.loopPointReached += EndReached;
 
         ToggleHideTazoDisplay(true);
-
+        BuyButton.enabled = false;
 
     }
 
@@ -236,11 +235,14 @@ public class Shop : MonoBehaviour
         if (toggle)
         {
             TazoGetParent.transform.parent = BackStage.transform;
+            TazoDisplay.Hide(true);
+           
 
         }
         else
         {
             TazoGetParent.transform.parent = this.transform;
+            TazoDisplay.Hide(false);
             TazoDisplay.Flip();
             switch (SelectedItem.ChipBag.GetChipType())
             {
@@ -254,6 +256,7 @@ public class Shop : MonoBehaviour
                     PuffParticle.Play();
                     break;
             }
+
         }
 
     }

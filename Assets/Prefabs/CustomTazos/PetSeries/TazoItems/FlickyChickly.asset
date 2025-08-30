@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04418360f9709a44bbe552b10e130868, type: 3}
+  m_Name: FlickyChickly
+  m_EditorClassIdentifier: 
+  Name: FlickyChicky
+  Description: 
+  EffectName: FlickyChicky
+  InGameTazo: {fileID: 2112154006763209013, guid: 93a54ecb2c9ed5b43a10d8601daf69d5, type: 3}
+  TazoTop: {fileID: 2100000, guid: 8baad16b50c175743b8809a1747dbea8, type: 2}
+  TazoBottom: {fileID: 2100000, guid: 0867543cdbfd6914bb18598b6b6daad4, type: 2}

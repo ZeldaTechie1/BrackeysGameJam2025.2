@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [SerializeField]
-    List<GameObject> PogInventory = new List<GameObject>();
+    List<TazoItem> TazoInventory = new List<TazoItem>();
     [SerializeField]
-    List<GameObject> PogHand = new List<GameObject>();
+    List<TazoItem> TazoHand = new List<TazoItem>();
     [SerializeField]
     GameObject ChipEffect;
 
@@ -40,39 +40,39 @@ public class PlayerData : ScriptableObject
     }
 
     //Inventory
-    public List<GameObject> GetInventory()
+    public List<TazoItem> GetInventory()
     {
-        return PogInventory;
+        return TazoInventory;
     }
-    public void AddToInventory(GameObject pog)
+    public void AddToInventory(TazoItem pog)
     {
-        PogInventory.Add(pog);
+        TazoInventory.Add(pog);
     }
-    public void RemoveFromInventory(GameObject pog)
+    public void RemoveFromInventory(TazoItem pog)
     {
-        PogInventory.Remove(pog);
+        TazoInventory.Remove(pog);
     }
     public void ClearInventory()
     {
-        PogInventory.Clear();
+        TazoInventory.Clear();
     }
 
     //Hand 
-    public List<GameObject> GetHand()
+    public List<TazoItem> GetHand()
     {
-        return PogHand;
+        return TazoHand;
     }
-    public void AddToHand(GameObject pog)
+    public void AddToHand(TazoItem pog)
     {
-        PogHand.Add(pog);
+        TazoHand.Add(pog);
     }
-    public void RemoveFromHand(GameObject pog)
+    public void RemoveFromHand(TazoItem pog)
     {
-        PogHand.Remove(pog);
+        TazoHand.Remove(pog);
     }
     public void ClearHand()
     {
-        PogHand.Clear();    
+        TazoHand.Clear();    
     }
 
     //Chips
