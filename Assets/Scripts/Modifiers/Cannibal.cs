@@ -1,4 +1,7 @@
-﻿using Random = UnityEngine.Random;
+﻿using System.Diagnostics;
+using UnityEngine;
+using Random = UnityEngine.Random;
+using Debug = UnityEngine.Debug;
 
 public class Cannibal : BasicAOEModifier
 {
@@ -11,10 +14,12 @@ public class Cannibal : BasicAOEModifier
             int randTazo = Random.Range(0, validTazosInRange.Count);
             Tazo t = validTazosInRange[randTazo];
             newScore = t.scoreValue * 2f;
+            Debug.Log($"Munch on {t.name}");
             t.gameObject.SetActive(false);
         }
 
         return newScore;
     }
 }
+
 

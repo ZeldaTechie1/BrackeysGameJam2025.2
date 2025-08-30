@@ -130,7 +130,7 @@ public class SlammerController : MonoBehaviour
         isSlamming = false;
         aimIndicator.gameObject.SetActive(false);
         aimIndicator.SetIndicatorSize(1);
-        SlamCompleted();
+        DOTween.Sequence().AppendInterval(1).AppendCallback(() => SlamCompleted());        
     }
 
     private void OnDrawGizmos()
