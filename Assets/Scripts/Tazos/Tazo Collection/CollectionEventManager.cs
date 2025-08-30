@@ -9,6 +9,8 @@ public static class CollectionEventManager
     {
         public UnityAction<CollectionItem> SelectItem;
         public UnityAction<bool> DeselectItem;
+
+        public UnityAction<bool> SwapUI;
     }
 
 }

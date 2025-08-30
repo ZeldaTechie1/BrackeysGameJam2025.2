@@ -50,10 +50,16 @@ public class Collection : MonoBehaviour
     [SerializeField]
     GameObject CollectionDisplay;
     [Space(5)]
-
-    [Header("Collection Display")]
+    [Header("Hand Display")]
     [SerializeField]
     GameObject HandDisplay;
+
+    [Header("Warning Message Display")]
+    [SerializeField]
+    GameObject WarningDisplay;
+    [SerializeField]
+    GameObject WarningText;
+    TextMeshProUGUI Warning;
 
     [Header("Player Data")]
     [SerializeField]
@@ -94,6 +100,7 @@ public class Collection : MonoBehaviour
         //Shop UI Set
         Name = TazoNameDisplay.GetComponent<TextMeshProUGUI>();
         Description = TazoDescriptionDisplay.GetComponent<TextMeshProUGUI>();
+        Warning=WarningText.GetComponent<TextMeshProUGUI>();    
         //Tazo UI Set
 
 
@@ -284,11 +291,20 @@ public class Collection : MonoBehaviour
         HandRemove.transform.gameObject.SetActive(!toggle);
     }
 
+    public void ToggleWarningTextButton(bool toggle)
+    {
+        HandRemove.enabled = !toggle;
+        HandRemove.transform.gameObject.SetActive(!toggle);
+    }
+
     public void ExitButton()
     {
         if (HandInventory.Count == PlayerData.HandSize)
         {
             PlayerData.MassAddToHand(PlayerHand);
+            Debug.Log("Wow!");
+            CollectionEventManager.CollectionItems.SwapUI(true);
+
         }
         else
         {

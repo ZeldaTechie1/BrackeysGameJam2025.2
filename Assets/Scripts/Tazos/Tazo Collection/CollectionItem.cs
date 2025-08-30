@@ -55,7 +55,6 @@ public class CollectionItem : MonoBehaviour
        
         if (toggle != null && toggle.isOn)
         {
-            Debug.Log("FUCK");
             CollectionEventManager.CollectionItems.SelectItem(this);
             toggle.group.SetAllTogglesOff(false);
             //Add Tazo Display Wiggle
