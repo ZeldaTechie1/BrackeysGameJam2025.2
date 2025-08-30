@@ -50,34 +50,42 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: m_Name
-      value: NarcolepticIsabelle
+      value: Flicky Chicky
       objectReference: {fileID: 0}
     - target: {fileID: 3572887625281166624, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 547d85ce1610b284f83998f41aba3dde, type: 2}
+      objectReference: {fileID: 2100000, guid: 0867543cdbfd6914bb18598b6b6daad4, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: series
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: scoreValue
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: Pecks at a random Pog in the play area. She's a playful hen.
+      objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 2024ec4b1c32235448f1fae1e267fd12, type: 2}
+      objectReference: {fileID: 2100000, guid: 8baad16b50c175743b8809a1747dbea8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 300999382185397281}
+      addedObject: {fileID: 4152792681849167726}
   m_SourcePrefab: {fileID: 100100000, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
 --- !u!1 &2112154006763209013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
   m_PrefabInstance: {fileID: 782859066619652908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &300999382185397281
+--- !u!114 &4152792681849167726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,10 +94,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112154006763209013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc581e35fe742584bb7bf6ca2d30d567, type: 3}
+  m_Script: {fileID: 11500000, guid: b0ac0f1fa6596514585400a8e3c6087c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 0
-  ModifierName: SleepyKitty
-  sleepyPercent: 50
-  isAsleep: 0
+  Range: 5
+  ModifierName: ChickFlick

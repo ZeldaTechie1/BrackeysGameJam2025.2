@@ -18,7 +18,6 @@ public class PowerMeter : MonoBehaviour
     {
         if(powerMeterContainer.activeSelf)
         {
-            Debug.Log($"CurrentPower: {currentPower}");
             currentChargingImage.fillAmount = currentPower;
         }
     }

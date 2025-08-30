@@ -50,34 +50,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: m_Name
-      value: LinkTheRuffian
+      value: Vampire
       objectReference: {fileID: 0}
     - target: {fileID: 3572887625281166624, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 4b1c5ac3b1e088d4cbe651b653265de0, type: 2}
+      objectReference: {fileID: 2100000, guid: 125e6398fdb773e499db54742f1e3f64, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
-      propertyPath: series
-      value: 1
+      propertyPath: scoreValue
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: When scored, this Pog will consume 10-15% of the opponent's turn. Isn't
+        it fangtastic?!
       objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: ce0dfb99b90329042b597bd3ed444fca, type: 2}
+      objectReference: {fileID: 2100000, guid: a49c1e3d5126784419b5b360bae34a09, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8410246234892670384}
+      insertIndex: 5
+      addedObject: {fileID: -387621320626518089}
   m_SourcePrefab: {fileID: 100100000, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
 --- !u!1 &2112154006763209013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
   m_PrefabInstance: {fileID: 782859066619652908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8410246234892670384
+--- !u!114 &-387621320626518089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,8 +91,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112154006763209013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f23811068c5f4c46ab3fb2229f0749d, type: 3}
+  m_Script: {fileID: 11500000, guid: c7c647c0818a11342b85e3847b559e04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Range: 100
-  ModifierName: RuffRuff
+  ModifierName: Vampiric Drain

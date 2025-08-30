@@ -19,10 +19,11 @@ public enum StatusEffects
 public class Tazo : MonoBehaviour
 {
     public Rigidbody rb;
-    public Series series;
+    public Series Series;
     public string Owner;
+    public string Description;
 
-    [SerializeField] float scoreValue;
+    public float scoreValue;
     List<IModifier> modifiers = new();
 
     public void Awake()
@@ -93,6 +94,11 @@ public class Tazo : MonoBehaviour
 
             rb.linearVelocity = -newDirection.normalized * rb.linearVelocity.magnitude * .8f;
         }
+    }
+
+    public string GetDescription()
+    {
+        return Description;
     }
 }
 

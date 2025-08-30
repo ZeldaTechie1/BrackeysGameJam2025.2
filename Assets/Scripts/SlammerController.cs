@@ -33,6 +33,12 @@ public class SlammerController : MonoBehaviour
         LeftMouseButtonAction = InputSystem.actions.FindAction("Attack");
         MousePositionAction = InputSystem.actions.FindAction("MousePosition");
         TurnHandler.PlayerStartSlam += OnPlayerStartSlam;
+        VampiricDrain.GetCurrentPlayer += GetCurrentPlayer;
+    }
+
+    private int GetCurrentPlayer()
+    {
+        return player;
     }
 
     private void OnEnable()
@@ -141,6 +147,8 @@ public class SlammerController : MonoBehaviour
             calculatedSlamPosition += t.transform.position;
         }
         calculatedSlamPosition /= tazoTracker.activeTazos.Count;
+        calculatedSlamPosition.x = UnityEngine.Random.Range(calculatedSlamPosition.x - 2, calculatedSlamPosition.x + 2);
+        calculatedSlamPosition.y = UnityEngine.Random.Range(calculatedSlamPosition.y - 2, calculatedSlamPosition.y + 2);
 
         Vector3 fakeAimingPosition = Vector3.zero;
 

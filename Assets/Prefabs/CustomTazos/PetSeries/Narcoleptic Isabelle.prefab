@@ -50,38 +50,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: m_Name
-      value: SelfishSally
+      value: Narcoleptic Isabelle
       objectReference: {fileID: 0}
     - target: {fileID: 3572887625281166624, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: b6f2fa2b2c8ba91479b363763f8dc20f, type: 2}
+      objectReference: {fileID: 2100000, guid: 547d85ce1610b284f83998f41aba3dde, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: series
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: scoreValue
-      value: 100
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: Has a 70% chance of being asleep. .5x multiplier to score if she is
+        asleep. Zzzzzzz honkshoo
       objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 96690c700085b214ab4018ae7cd1fb7a, type: 2}
+      objectReference: {fileID: 2100000, guid: 2024ec4b1c32235448f1fae1e267fd12, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2813487337744868125}
+      addedObject: {fileID: 300999382185397281}
   m_SourcePrefab: {fileID: 100100000, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
 --- !u!1 &2112154006763209013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
   m_PrefabInstance: {fileID: 782859066619652908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2813487337744868125
+--- !u!114 &300999382185397281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,8 +95,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112154006763209013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07a7efc5b1909c2489794fb63ef13a9c, type: 3}
+  m_Script: {fileID: 11500000, guid: cc581e35fe742584bb7bf6ca2d30d567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 7
-  ModifierName: Default AOE Modifier
+  ModifierName: SleepyKitty
+  sleepyPercent: 50
+  isAsleep: 0

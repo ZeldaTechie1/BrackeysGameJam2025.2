@@ -60,6 +60,7 @@ public class TazoTracker : MonoBehaviour
 
     void CheckForActiveTazos()
     {
+        UpdateActiveTazos();
         KeepPlaying?.Invoke(activeTazos.Count > 0);
     }
 }
