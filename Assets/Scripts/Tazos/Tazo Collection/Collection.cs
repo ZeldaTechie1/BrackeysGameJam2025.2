@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -10,8 +12,7 @@ public class Collection : MonoBehaviour
     [Header("Collection SetUp")]
     [SerializeField]
     List<CollectionItem> CollectionInventory = new List<CollectionItem>();
-    [SerializeField]
-    List<CollectionItem> HandInventory = new List<CollectionItem>();
+    Dictionary<CollectionItem, GameObject> HandInventory= new Dictionary<CollectionItem, GameObject>();
     [SerializeField]
     GameObject BaseCollectionItem;
     [SerializeField]
@@ -96,7 +97,8 @@ public class Collection : MonoBehaviour
         //Tazo UI Set
 
 
-       .enabled = false;
+        ToggleHideAddButton(true);
+        ToggleHideRemoveButton(true);
 
     }
 
@@ -153,17 +155,25 @@ public class Collection : MonoBehaviour
             {
                 CollectionItem.TazoItem = tazo;
                 CollectionItem.SetUp();
-                HandInventory.Add(CollectionItem);
+                HandInventory.Add(CollectionItem,item);
 
 
             }
+           
         }
-
 
     }
 
+    public void UpdatePlayerHand()
+    {
+        ClearPlayerHand();
 
+    }
 
+    private void ClearPlayerHand()
+    {
+       
+    }
 
     public void DeselectItem(bool holder)
     {
@@ -184,17 +194,110 @@ public class Collection : MonoBehaviour
         Description.SetText(Item.GetItemDescrption());
 
         Name.enabled = true;
-        HandAdd.enabled = true;
-        HandRemove.enabled = true;
+
+        if(TazoInHand(SelectedItem.TazoItem))
+        {
+            ToggleHideAddButton(true);
+            ToggleHideRemoveButton(false);
+        }
+        else
+        {
+            ToggleHideAddButton(false);
+            ToggleHideRemoveButton(true);
+        }
+
     }
+
+    public bool TazoInHand(TazoItem T)
+    {
+        foreach (TazoItem tazo in PlayerHand)
+        {
+            if(tazo==T)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void RemoveSelected()
+    {
+       if(SelectedItem!=null)
+       {
+            if (TazoInHand(SelectedItem.TazoItem))
+            {
+                foreach(KeyValuePair<CollectionItem,GameObject> entry in HandInventory)
+                {
+                    if (entry.Key.TazoItem == SelectedItem.TazoItem)
+                    {
+                        GameObject GO = entry.Value;
+                        Destroy(GO);
+                        HandInventory.Remove(entry.Key);
+                        break;
+                    }
+                }
+                PlayerHand.Remove(SelectedItem.TazoItem);
+                ToggleHideAddButton(false);
+                ToggleHideRemoveButton(true);
+            }
+       }
+    }
+    public void AddSelected()
+    {
+        TazoItem tazo = SelectedItem.TazoItem;
+        if(!TazoInHand(tazo))
+        {
+            GameObject item = Instantiate(HandCollectionItem, HandDisplay.transform);
+            CollectionItem CollectionItem = item.GetComponent<CollectionItem>();
+
+            Toggle toggle = item.GetComponent<Toggle>();
+            if (toggle != null)
+            {
+                toggle.group = TGroup;
+            }
+            if (CollectionItem != null)
+            {
+                CollectionItem.TazoItem = tazo;
+                CollectionItem.SetUp();
+                HandInventory.Add(CollectionItem, item);
+            }
+            PlayerHand.Add(SelectedItem.TazoItem);
+            ToggleHideAddButton(true);
+            ToggleHideRemoveButton(false);
+        }
+        else
+        {
+            Debug.Log("Cant Add a duplicate");
+        }
+    }
+
 
     public void ToggleHideAddButton(bool toggle)
     {
-        if()
+        HandAdd.enabled = !toggle;
+        HandAdd.transform.gameObject.SetActive(!toggle);
 
     }
     public void ToggleHideRemoveButton(bool toggle)
     {
+        HandRemove.enabled = !toggle;
+        HandRemove.transform.gameObject.SetActive(!toggle);
+    }
 
+    public void ExitButton()
+    {
+        if (HandInventory.Count == PlayerData.HandSize)
+        {
+            PlayerData.MassAddToHand(PlayerHand);
+        }
+        else
+        {
+            DisplayHandSizeWarning();
+        }
+    }
+
+    private void DisplayHandSizeWarning()
+    {
+        throw new NotImplementedException();
     }
 }
