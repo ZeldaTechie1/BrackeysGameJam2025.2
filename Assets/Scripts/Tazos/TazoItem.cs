@@ -48,10 +48,15 @@ public class TazoItem : ScriptableObject
             GameObject Top = InGameTazo.transform.Find("Top").gameObject;
             GameObject Bottom = InGameTazo.transform.Find("Bottom").gameObject;
 
+            if (Top != null&&Bottom!=null)
+            {
+                Debug.Log("SQUEE");
+            }
+
             try
             {
-                TazoTop = Top.GetComponent<Material>();
-                TazoBottom = Bottom.GetComponent<Material>();
+                TazoTop = Top.GetComponent<MeshRenderer>().sharedMaterials[0];
+                TazoBottom = Bottom.GetComponent<MeshRenderer>().sharedMaterials[0];
             }
             catch
             {

@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6bdc2142f5b5694f8407d18cb3b25c5, type: 3}
-  m_Name: LifeGaurd
+  m_Script: {fileID: 11500000, guid: 04418360f9709a44bbe552b10e130868, type: 3}
+  m_Name: FurballTriss
   m_EditorClassIdentifier: 
-  Name: LifeGaurd
-  Description: LifGaurd
-  EffectName: LIFE
-  BagPortrait: {fileID: -670593793, guid: ea9e2ac5cb241414ea5368fd0bb56721, type: 3}
-  PossibleTazos: []
+  Name: Triss
+  Description: 
+  EffectName: Furball
+  InGameTazo: {fileID: 2112154006763209013, guid: 6d4531a4b4bbd4e4e9f2bc0abb4d7a3e, type: 3}
+  TazoTop: {fileID: 0}
+  TazoBottom: {fileID: 0}

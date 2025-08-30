@@ -5,9 +5,13 @@ public class TazoDisplay : MonoBehaviour
 {
     [Header("Tazo Mesh Renderers")]
     [SerializeField]
+    MeshRenderer Core;
+    [SerializeField]
     MeshRenderer Top;
     [SerializeField]
     MeshRenderer Bottom;
+    [SerializeField]
+    MeshRenderer Border;
 
     [Header("Tazo Materials")]
     [SerializeField]
@@ -36,19 +40,27 @@ public class TazoDisplay : MonoBehaviour
     {
         if(TazoTop != null)
         {
-            Top.material=TazoTop;
+            Top.materials[0]=TazoTop;
         }
         if(TazoBottom != null)
         {
-            Bottom.material=TazoBottom;
+            Bottom.materials[0]=TazoBottom;
         }
         
     }
 
     public void SetMaterials(Material top, Material bottom)
     {
+        TazoTop = top;
+        TazoBottom = bottom;
         Top.material = TazoTop;
         Bottom.material = TazoBottom;
+
+        Top.UpdateGIMaterials();
+        Bottom.UpdateGIMaterials();
+
+
+       
     }
 
     public void Flip()
@@ -56,6 +68,26 @@ public class TazoDisplay : MonoBehaviour
         if(Anim!= null)
         {
             Anim.SetTrigger("DisplayFlip");
+        }
+    }
+
+    public void Hide(bool hide)
+    {
+        if (hide)
+        {
+            Core .enabled = false;
+            Top.enabled = false;
+            Bottom.enabled = false;
+            Border.enabled = false;
+
+        }
+        else 
+        {
+            Core.enabled = true;
+            Top.enabled = true;
+            Bottom.enabled = true;
+            Border.enabled = true;
+        
         }
     }
 

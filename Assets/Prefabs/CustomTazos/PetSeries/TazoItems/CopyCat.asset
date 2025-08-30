@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04418360f9709a44bbe552b10e130868, type: 3}
+  m_Name: CopyCat
+  m_EditorClassIdentifier: 
+  Name: Marnie
+  Description: 
+  EffectName: CopyCat
+  InGameTazo: {fileID: 2112154006763209013, guid: d5385156b95a3fe44bff96f621d22f8c, type: 3}
+  TazoTop: {fileID: 2100000, guid: a49c1e3d5126784419b5b360bae34a09, type: 2}
+  TazoBottom: {fileID: 2100000, guid: 125e6398fdb773e499db54742f1e3f64, type: 2}
