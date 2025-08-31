@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: HotChip
   m_EditorClassIdentifier: 
   Name: Hot Chip
-  Description: Very Hot Chips
+  Description: Very Hot Chips! Can You handle the heat?
   EffectName: HotChip
-  ChipType: 2
-  BagPortrait: {fileID: 1404175194, guid: d34957922e847cb499bccbe0a9c2a375, type: 3}
+  ChipType: 1
+  BagPortrait: {fileID: -1743924638, guid: 758dd1032bac43946abd33e583bda476, type: 3}
   PossibleTazos:
   - {fileID: 11400000, guid: 26e4a539e52e97e439c49174545cb45e, type: 2}
   - {fileID: 11400000, guid: 1812ff48968f97643877e555b2d778db, type: 2}

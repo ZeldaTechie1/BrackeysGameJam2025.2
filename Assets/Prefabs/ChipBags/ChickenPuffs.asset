@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6bdc2142f5b5694f8407d18cb3b25c5, type: 3}
-  m_Name: LifeGaurd
+  m_Name: ChickenPuffs
   m_EditorClassIdentifier: 
-  Name: LifeGuard Brand PotatoChips
-  Description: A Safe bet.... But Is it really what you want?
-  EffectName: LIFE
-  ChipType: 0
-  BagPortrait: {fileID: -1342592054, guid: 7239072e8982be9469baae42553878ac, type: 3}
+  Name: Farm Tato's Chicken Puffs
+  Description: 'It sure does taste like chicken... '
+  EffectName: 
+  ChipType: 2
+  BagPortrait: {fileID: 1899725694, guid: 62ad6f8a4aea9d24182e81df258d9c0a, type: 3}
   PossibleTazos:
   - {fileID: 11400000, guid: f0f59509d64b6a74890ec9b3c94da1a7, type: 2}
   - {fileID: 11400000, guid: b17f6032f4bfafb4c876a60e41f830e0, type: 2}
@@ -24,3 +24,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: df537544b5d46b3449cdb9f231e9a435, type: 2}
   - {fileID: 11400000, guid: 6d5625ece2027f44aa6a5f62bbf4566f, type: 2}
   - {fileID: 11400000, guid: 58a5f1c3ce1da0047b6a8838a5c4cb49, type: 2}
+  - {fileID: 11400000, guid: 26e4a539e52e97e439c49174545cb45e, type: 2}
+  - {fileID: 11400000, guid: 1812ff48968f97643877e555b2d778db, type: 2}
+  - {fileID: 11400000, guid: ba124f57c84a54448a189e65923b0799, type: 2}
+  - {fileID: 11400000, guid: b08bd9043894c5d4182babf45f0813bb, type: 2}
+  - {fileID: 11400000, guid: bc62b097642feab4cadd0c7c42c04dbe, type: 2}
