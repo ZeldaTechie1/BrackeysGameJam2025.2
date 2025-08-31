@@ -341,6 +341,9 @@ public class Collection : MonoBehaviour
 
     private void DisplayHandSizeWarning()
     {
+        var holder = Warning.text;
+
+        Warning.SetText("HEY BRO! YOU GOTTA CHOOSE "+PlayerData.HandSize.ToString()+" TAZOS TO PLAY WITH BEFORE YOU CAN RETURN TO THE FIGHT!");
 
         ToggleHideWarningText(false);
     }
