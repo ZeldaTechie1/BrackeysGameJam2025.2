@@ -55,7 +55,7 @@ PrefabInstance:
     - target: {fileID: 3572887625281166624, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 125e6398fdb773e499db54742f1e3f64, type: 2}
+      objectReference: {fileID: 2100000, guid: bc8e131e11a86ea40b5d10a0fb7ccbb5, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: Name
       value: Slasher
@@ -68,7 +68,7 @@ PrefabInstance:
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: a49c1e3d5126784419b5b360bae34a09, type: 2}
+      objectReference: {fileID: 2100000, guid: 84aa19c5707a7e84aaa11bbc069258a4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
