@@ -41,6 +41,8 @@ public class Shop : MonoBehaviour
     [Header("Bag Open")]
     [SerializeField]
     VideoPlayer BagOpenPlayer;
+    [SerializeField]
+    GameObject VideoHolder;
 
     [Header("Tazo Get")]
     [SerializeField]
@@ -113,10 +115,15 @@ public class Shop : MonoBehaviour
         
         BagOpenPlayer.loopPointReached += EndReached;
 
+        BagOpenPlayer.Prepare();
+       
+
         ToggleHideTazoDisplay(true);
         BuyButton.enabled = false;
         ItemNameDisplay.SetActive(false);
         ItemDescriptionDisplay.SetActive(false);
+
+        VideoHolder.SetActive(false);
 
     }
 
@@ -207,16 +214,25 @@ public class Shop : MonoBehaviour
     public void BuyItem()
     {
         //PlayerData.AddToInventory(SelectedItem.);
-       
+        VideoHolder.SetActive(true);
         BagOpenPlayer.Play();
         GetTazoFromBag();
         ToggleHideShopDisplay(true);
         
     }
 
+    public void SkipVid()
+    {
+        BagOpenPlayer.Stop();
+        VideoHolder.SetActive(false);
+        ToggleHideTazoDisplay(false);
+    }
+  
+
     void EndReached(UnityEngine.Video.VideoPlayer vp)
     {
         vp.Stop();
+        VideoHolder.SetActive(false);
         ToggleHideTazoDisplay(false);
 
         //ToggleShopDisplay(false);
