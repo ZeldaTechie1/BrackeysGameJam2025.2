@@ -9,6 +9,15 @@ public class PlayerData : ScriptableObject
     List<TazoItem> TazoInventory = new List<TazoItem>();
     [SerializeField]
     List<TazoItem> TazoHand = new List<TazoItem>();
+
+
+    [SerializeField]
+    int MaxHandSize;
+
+    [SerializeField]
+    public int HandSize;
+
+
     [SerializeField]
     GameObject ChipEffect;
 
@@ -66,6 +75,12 @@ public class PlayerData : ScriptableObject
     {
         TazoHand.Add(pog);
     }
+    public void MassAddToHand(List<TazoItem> pog)
+    {
+        TazoHand.Clear();
+        TazoHand = pog;
+    }
+
     public void RemoveFromHand(TazoItem pog)
     {
         TazoHand.Remove(pog);
@@ -85,12 +100,15 @@ public class PlayerData : ScriptableObject
          return ChipEffect;
     }
 
+
+
     public void EndRun()
     {
         ClearInventory();
         ClearHand();
         NumberOfWins = 0;
         NumberOfLosses= 0;
+        HandSize = MaxHandSize;
         ChipEffect= null;
     }
 

@@ -29,6 +29,11 @@ public class LevelSelect : MonoBehaviour
     {
         
     }
+    public void SwapUI()
+    {
+        CollectionEventManager.CollectionItems.SwapUI(true);
+    }
+
 
     public void SceneSetUp()
     {
