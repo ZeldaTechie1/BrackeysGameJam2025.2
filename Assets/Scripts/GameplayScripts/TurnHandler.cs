@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum TurnState
 {
@@ -33,6 +34,11 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] TazoTracker tazoTracker;
     [SerializeField] SlammerController slammerController;
     [SerializeField] TazoSpawner spawner;
+    [SerializeField] GameObject winningPrefab;
+    [SerializeField] GameObject losingPrefab;
+    [SerializeField] GameObject MenuContainer;
+    [SerializeField] GameObject FakeMenuContainer;
+    [SerializeField] PlayerData playerData;
 
     private void Awake()
     {
@@ -129,11 +135,45 @@ public class TurnHandler : MonoBehaviour
         if(playerID == -1)
         {
             Debug.Log("Turn: It's a tie!");
+            losingPrefab.SetActive(true);
+            playerData.IncrementLoss();
         }
         else
         {
             Debug.Log($"Turn: Winner is {playerID}");
+            if(playerID == 0)
+            {
+                winningPrefab.SetActive(true);
+                playerData.IncrementWin();
+            }
+            else
+            {
+                losingPrefab.SetActive(true);
+                playerData.IncrementLoss();
+            }
         }
+
+        MenuContainer.SetActive(true);
+        FakeMenuContainer.SetActive(true);
+    }
+
+    public void ExitGame()
+    {
         Application.Quit();
+    }
+
+    public void Continue()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void OnDisable()
+    {
+        IntroductionHandler.FinishedIntro -= OnFinishedIntro;
+        SlammerController.SlamCompleted -= OnSlamCompleted;
+        TazoTracker.TazosDoneMoving -= OnTazosDoneMoving;
+        ScoreController.DoneScoring -= OnDoneScoring;
+        TazoTracker.KeepPlaying -= OnDoneCheckingIfPlayable;
+        ScoreController.DeterminedWinner -= OnDeterminedWinner;
     }
 }

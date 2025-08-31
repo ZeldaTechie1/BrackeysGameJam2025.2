@@ -71,6 +71,11 @@ public class LevelSelect : MonoBehaviour
 
     public void LoadNextLevel()
     {
+        if(Player.GetHand().Count < Player.MaxHandSize)
+        {
+            CollectionEventManager.CollectionItems.SwapUI(true);
+            return;
+        }
         if(LVLSBoxes.Count > 0&&LVLSBoxes.Count> Player.GetWins()) 
         {
             foreach(LevelSelectionBox LvlsBox in LVLSBoxes)
@@ -79,7 +84,7 @@ public class LevelSelect : MonoBehaviour
                 {
 
                     Debug.Log("Load Level:" +LvlsBox.LevelName);
-                    //SceneManager.LoadScene(LVLSBoxes[EnemiesDefeated].LevelID);
+                    SceneManager.LoadScene(2);
                 }
             }
 

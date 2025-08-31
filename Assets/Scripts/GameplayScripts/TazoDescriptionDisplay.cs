@@ -27,7 +27,7 @@ public class TazoDescriptionDisplay : MonoBehaviour
             if (t != null)
             {
                 tazoDescriptionContainer.SetActive(true);
-                tazoDescription.text = t.GetDescription();
+                tazoDescription.text = t.GetDescription() + $"\n\nBase Score: {t.scoreValue}";
                 tazoName.text = t.Name;
             }
             else

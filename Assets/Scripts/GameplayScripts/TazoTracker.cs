@@ -25,6 +25,14 @@ public class TazoTracker : MonoBehaviour
         activeTazos = allTazos;
     }
 
+    private void OnDisable()
+    {
+        TurnHandler.WaitingForTazos -= OnCheckForMovement;
+        TurnHandler.WaitingForModifiers -= OnCheckForMovement;
+        TurnHandler.CheckingIfTazosAreGone -= CheckForActiveTazos;
+        TurnHandler.PlayerStartSlam -= UpdateActiveTazos;
+    }
+
     private void UpdateActiveTazos()
     {
         activeTazos = activeTazos.Where(x => x.gameObject.activeSelf).ToList();

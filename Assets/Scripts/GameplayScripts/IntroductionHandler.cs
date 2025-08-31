@@ -15,4 +15,9 @@ public class IntroductionHandler : MonoBehaviour
     {
         DOTween.Sequence().AppendInterval(1f).AppendCallback(()=>FinishedIntro());//dostuff
     }
+
+    private void OnDisable()
+    {
+        TurnHandler.ShowingPlayers -= ShowPlayers;
+    }
 }
