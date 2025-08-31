@@ -31,7 +31,9 @@ public class Collection : MonoBehaviour
     [Space(5)]
     [field: Header("Tazo Display")]
     [SerializeField]
-    TazoDisplay TazoDisplay;
+    TazoDisplay TazoDisplayHolder;
+    [SerializeField]
+    GameObject TazoInfoDisplay;
     [SerializeField]
     GameObject TazoNameDisplay;
     [SerializeField]
@@ -197,21 +199,35 @@ public class Collection : MonoBehaviour
 
     public void ToggleHideTazoText(bool hide)
     {
-        TazoNameDisplay.SetActive(!hide);
+        if (hide)
+        {
+            TazoNameDisplay.transform.parent = BackStage.transform;
+            
 
-       TazoDescriptionDisplay.SetActive(!hide);
+
+
+        }
+        else
+        {
+            TazoNameDisplay.transform.parent = TazoInfoDisplay.transform;
+         
+
+        }
     }
 
     public void SelectItem(CollectionItem Item)
     {
-        
+        ToggleHideTazoText(false);
         SelectedItem = Item;
 
         Name.SetText(Item.GetItemName());
         Description.SetText(Item.GetItemDescrption());
-
+        Debug.Log(Item.GetItemDescrption());
+        var top = SelectedItem.TazoItem.GetTopMaterial();
+        var bottom = SelectedItem.TazoItem.GetBottomMaterial();
+        TazoDisplayHolder.SetMaterials(top, bottom);
         Name.enabled = true;
-
+        Description.enabled = true;
         if(TazoInHand(SelectedItem.TazoItem))
         {
             ToggleHideAddButton(true);
@@ -222,7 +238,7 @@ public class Collection : MonoBehaviour
             ToggleHideAddButton(false);
             ToggleHideRemoveButton(true);
         }
-        ToggleHideTazoText(false);
+       
 
     }
 
@@ -282,6 +298,7 @@ public class Collection : MonoBehaviour
             PlayerHand.Add(SelectedItem.TazoItem);
             ToggleHideAddButton(true);
             ToggleHideRemoveButton(false);
+
         }
         else
         {
