@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 
@@ -114,6 +115,8 @@ public class Shop : MonoBehaviour
 
         ToggleHideTazoDisplay(true);
         BuyButton.enabled = false;
+        ItemNameDisplay.SetActive(false);
+        ItemDescriptionDisplay.SetActive(false);
 
     }
 
@@ -170,6 +173,9 @@ public class Shop : MonoBehaviour
 
     public void SelectItem(ShopItem shopItem)
     {
+        ItemNameDisplay.SetActive(true);
+        ItemDescriptionDisplay.SetActive(true);
+
         SelectedItem = shopItem;
 
         Name.SetText(shopItem.GetItemName());
@@ -260,5 +266,12 @@ public class Shop : MonoBehaviour
         }
 
     }
+
+    public void AcceptTazo()
+    {
+        PlayerData.AddToInventory(PulledTazo);
+        SceneManager.LoadScene(1);
+    }
+
 
 }
