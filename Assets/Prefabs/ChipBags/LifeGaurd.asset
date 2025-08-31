@@ -16,7 +16,7 @@ MonoBehaviour:
   Description: LifeGuard
   EffectName: LIFE
   ChipType: 1
-  BagPortrait: {fileID: -670593793, guid: ea9e2ac5cb241414ea5368fd0bb56721, type: 3}
+  BagPortrait: {fileID: 21300000, guid: 7239072e8982be9469baae42553878ac, type: 3}
   PossibleTazos:
   - {fileID: 11400000, guid: f0f59509d64b6a74890ec9b3c94da1a7, type: 2}
   - {fileID: 11400000, guid: b17f6032f4bfafb4c876a60e41f830e0, type: 2}
