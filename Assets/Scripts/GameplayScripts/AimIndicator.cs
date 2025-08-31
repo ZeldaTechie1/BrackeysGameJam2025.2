@@ -5,7 +5,7 @@ public class AimIndicator : MonoBehaviour
     public void SetIndicatorPosition(Vector3 position)
     {
         Vector3 newPosition = position;
-        newPosition.y = 0;
+        newPosition.y = .5f;
         transform.position = newPosition;
     }
 

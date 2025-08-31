@@ -22,14 +22,18 @@ public class TazoItem : ScriptableObject
 
     private void Awake()
     {
-        
+        GetDescription();
+        GetName();
+        PullMats();
     }
     public string GetName()
     {
+        Name = InGameTazo.GetComponent<Tazo>().Name;
         return Name;
     }
     public string GetDescription()
     {
+        Description = InGameTazo.GetComponent<Tazo>().Description;
         return Description;
     }
     public string GetEffectName()

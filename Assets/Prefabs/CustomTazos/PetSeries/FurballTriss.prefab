@@ -53,6 +53,10 @@ PrefabInstance:
       value: FurballTriss
       objectReference: {fileID: 0}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Series
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: series
       value: 1
       objectReference: {fileID: 0}

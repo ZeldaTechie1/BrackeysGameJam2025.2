@@ -32,6 +32,7 @@ public class TurnHandler : MonoBehaviour
     [SerializeField] ScoreController scoreController;
     [SerializeField] TazoTracker tazoTracker;
     [SerializeField] SlammerController slammerController;
+    [SerializeField] TazoSpawner spawner;
 
     private void Awake()
     {
@@ -58,6 +59,7 @@ public class TurnHandler : MonoBehaviour
     public void SetupControllers()
     {
         Debug.Log("Turn: Setting up controllers");
+        spawner.Setup();
         scoreController.Setup();
         tazoTracker.Setup();
         slammerController.Setup();
