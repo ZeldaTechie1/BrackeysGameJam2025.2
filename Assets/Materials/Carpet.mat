@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CRT_Material
-  m_Shader: {fileID: -6465566751694194690, guid: bf310be7a60fdaf499c45aa8c82ed11c, type: 3}
+  m_Name: Carpet
+  m_Shader: {fileID: -6465566751694194690, guid: 9d9e3e02884a4e645bf9bfa8c02792f9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -64,16 +64,28 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _RGBMask:
-        m_Texture: {fileID: 2800000, guid: 2df420ec2eef6aa4fbdde44847a18903, type: 3}
+    - _SampleTexture2D_304b9e56e13f49719d5e1f663c7e7ce4_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 7c1bf5c2d66045f47a4098186fc6b255, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_33d47a32e28a4652a73bcc4169007f9e_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: e9ea077de87e9a9478a6e7b4d2d26996, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_45f92741cb1c49eb8d6daf05378186a3_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 618a0ed77618114448a7b97b33b566fb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_6666783265494b24923c19b1b5b62b99_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 8736008bddefb6f44afe52de32090d63, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_9f9a0d2ec06f41d789fcafb31d221294_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: b0cda95112c231c40a0431568b817bbf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _TargetTexture:
-        m_Texture: {fileID: 8600000, guid: 660d0ce0f6fb0a544b4f691eed1ac3dd, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -95,62 +107,52 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
-    - _Blur_Offset: 0.01
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _ColorMask: 15
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DistortionAmount: 0.02
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FlickerStrength: 0.3
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Layer_A_Speed: 0.025
+    - _Layer_B_Speed: 0.025
+    - _Layer_C_Speed: 0.025
+    - _Layer_D_Speed: 0.025
+    - _Layer_E_Speed: 0.025
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _RGBMaskStrength: 0.4
     - _ReceiveShadows: 1
-    - _ScanlineBrightness: 2
-    - _ScanlineFrequency: 1080
-    - _ScanlineStrength: 0.4
-    - _Scanline_Count: 100
-    - _Scanline_Speed: 0.01
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
     - _Surface: 0
-    - _UIMaskSoftnessX: 1
-    - _UIMaskSoftnessY: 1
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Bloom_Color: {r: 8, g: 8, b: 8, a: 1}
-    - _ClipRect: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RGBMaskDensity: {r: 5760, g: 4320, b: 0, a: 0}
+    - _Layer_A_Color: {r: 0.21960777, g: 0.8431373, b: 0.9254902, a: 1}
+    - _Layer_B_Color: {r: 0.38431367, g: 0.67058825, b: 0.8705882, a: 1}
+    - _Layer_C_Color: {r: 0.6588235, g: 0.5647059, b: 0.8941177, a: 1}
+    - _Layer_D_Color: {r: 0.8078431, g: 0.8078431, b: 0.18823525, a: 1}
+    - _Layer_E_Color: {r: 0.9098039, g: 0.5019608, b: 0.9019608, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &6482239344905438356
+--- !u!114 &5344735875812208780
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

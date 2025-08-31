@@ -26,9 +26,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6d5625ece2027f44aa6a5f62bbf4566f, type: 2}
   - {fileID: 11400000, guid: 58a5f1c3ce1da0047b6a8838a5c4cb49, type: 2}
   - {fileID: 11400000, guid: df537544b5d46b3449cdb9f231e9a435, type: 2}
-  - {fileID: 11400000, guid: f0f59509d64b6a74890ec9b3c94da1a7, type: 2}
-  MaxHandSize: 6
-  HandSize: 6
+  MaxHandSize: 5
+  HandSize: 5
   ChipEffect: {fileID: 0}
   NumberOfWins: 1
   NumberOfLosses: 0

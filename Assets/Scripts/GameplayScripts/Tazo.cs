@@ -22,6 +22,7 @@ public class Tazo : MonoBehaviour
     public Series Series;
     public string Owner;
     public string Description;
+    public string Name;
 
     public float scoreValue;
     List<IModifier> modifiers = new();

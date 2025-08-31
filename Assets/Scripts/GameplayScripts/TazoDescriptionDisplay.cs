@@ -28,7 +28,7 @@ public class TazoDescriptionDisplay : MonoBehaviour
             {
                 tazoDescriptionContainer.SetActive(true);
                 tazoDescription.text = t.GetDescription();
-                tazoName.text = t.gameObject.name;
+                tazoName.text = t.Name;
             }
             else
             {

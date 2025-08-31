@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class SlammerController : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class SlammerController : MonoBehaviour
     [SerializeField] AimIndicator aimIndicator;
     [SerializeField] TazoTracker tazoTracker;
     [SerializeField] Camera aimCamera;
+    [SerializeField] Image turnImage;
+    [SerializeField] List<Material> turnMaterials;
 
     private InputAction LeftMouseButtonAction;
     private InputAction MousePositionAction;
@@ -61,6 +64,7 @@ public class SlammerController : MonoBehaviour
         isSlamming = true;
         player++;
         player = (int)Mathf.Repeat(player, 2);
+        turnImage.material = turnMaterials[player];
         Debug.Log($"Player is {player}");
         aimIndicator.gameObject.SetActive(true);
         if (player == 1)
