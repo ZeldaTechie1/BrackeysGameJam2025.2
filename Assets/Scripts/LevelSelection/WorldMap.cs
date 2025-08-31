@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldMap : MonoBehaviour
 {
@@ -35,6 +36,11 @@ public class WorldMap : MonoBehaviour
     {
         Map.SetActive(!Map.activeInHierarchy);
         Collection.SetActive(!Collection.activeInHierarchy);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
 
