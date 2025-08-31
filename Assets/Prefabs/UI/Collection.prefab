@@ -685,7 +685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.65}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.5}
+  m_AnchoredPosition: {x: 0, y: -0.5}
   m_SizeDelta: {x: 0, y: -1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7169135868698643255
@@ -1745,7 +1745,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2102183238107269003}
   - {fileID: 2545818850934303346}
@@ -1810,7 +1810,8 @@ MonoBehaviour:
   CollectionInventory: []
   BaseCollectionItem: {fileID: 1266356305130445922, guid: 1a3169410eb1ffc4a954e08924fb7435, type: 3}
   HandCollectionItem: {fileID: 7466369505972355875, guid: cd648efaf181ee542af6ff33cb25affc, type: 3}
-  TazoDisplay: {fileID: 8315836705580865650}
+  TazoDisplayHolder: {fileID: 8315836705580865650}
+  TazoInfoDisplay: {fileID: 4738010153970982563}
   TazoNameDisplay: {fileID: 2226382628164913535}
   TazoDescriptionDisplay: {fileID: 2511171266137918825}
   HandAdd: {fileID: 1799869168553783441}
@@ -1819,6 +1820,8 @@ MonoBehaviour:
   TGroup: {fileID: 4058968629818331380}
   CollectionDisplay: {fileID: 5554165813079576670}
   HandDisplay: {fileID: 8541076128905362450}
+  WarningDisplay: {fileID: 3200519886804794987}
+  WarningText: {fileID: 3857130946438566273}
   PlayerData: {fileID: 11400000, guid: 650eee1bac06a744091ac918400f3ba7, type: 2}
   SelectedItem: {fileID: 0}
 --- !u!114 &4058968629818331380
@@ -2002,7 +2005,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7710201719486146382}
   m_HandleRect: {fileID: 6487204967174921502}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 0.9999888
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2418,10 +2421,10 @@ RectTransform:
   - {fileID: 1824220601253263790}
   m_Father: {fileID: 3974117006556429440}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.4}
-  m_AnchorMax: {x: 0.5, y: 0.4}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.44945377, y: 0.3082698}
+  m_AnchorMax: {x: 0.5522002, y: 0.44400004}
+  m_AnchoredPosition: {x: -11.474243, y: -1.5793915}
+  m_SizeDelta: {x: 22.004444, y: 5.5106335}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5810529732465199351
 CanvasRenderer:
@@ -2504,7 +2507,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8821559232897136261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2504191596744763106}
+        m_TargetAssemblyTypeName: Collection, Assembly-CSharp
+        m_MethodName: ToggleHideWarningText
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &9183455964987461189
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -30,7 +31,9 @@ public class Collection : MonoBehaviour
     [Space(5)]
     [field: Header("Tazo Display")]
     [SerializeField]
-    TazoDisplay TazoDisplay;
+    TazoDisplay TazoDisplayHolder;
+    [SerializeField]
+    GameObject TazoInfoDisplay;
     [SerializeField]
     GameObject TazoNameDisplay;
     [SerializeField]
@@ -106,6 +109,8 @@ public class Collection : MonoBehaviour
 
         ToggleHideAddButton(true);
         ToggleHideRemoveButton(true);
+        ToggleHideWarningText(true);
+        ToggleHideTazoText(true);
 
     }
 
@@ -142,7 +147,7 @@ public class Collection : MonoBehaviour
                 CollectionItem.TazoItem=tazo;
                 CollectionItem.SetUp();
                 CollectionInventory.Add(CollectionItem);
-                Debug.Log("SQUEE");
+                
 
 
             }
@@ -163,11 +168,12 @@ public class Collection : MonoBehaviour
                 CollectionItem.TazoItem = tazo;
                 CollectionItem.SetUp();
                 HandInventory.Add(CollectionItem,item);
-
+                
 
             }
            
         }
+        
 
     }
 
@@ -191,17 +197,37 @@ public class Collection : MonoBehaviour
         HandRemove.enabled=false;
     }
 
+    public void ToggleHideTazoText(bool hide)
+    {
+        if (hide)
+        {
+            TazoNameDisplay.transform.parent = BackStage.transform;
+            
+
+
+
+        }
+        else
+        {
+            TazoNameDisplay.transform.parent = TazoInfoDisplay.transform;
+         
+
+        }
+    }
 
     public void SelectItem(CollectionItem Item)
     {
-        Debug.Log("DEBUG");
+        ToggleHideTazoText(false);
         SelectedItem = Item;
 
         Name.SetText(Item.GetItemName());
         Description.SetText(Item.GetItemDescrption());
-
+        Debug.Log(Item.GetItemDescrption());
+        var top = SelectedItem.TazoItem.GetTopMaterial();
+        var bottom = SelectedItem.TazoItem.GetBottomMaterial();
+        TazoDisplayHolder.SetMaterials(top, bottom);
         Name.enabled = true;
-
+        Description.enabled = true;
         if(TazoInHand(SelectedItem.TazoItem))
         {
             ToggleHideAddButton(true);
@@ -212,6 +238,7 @@ public class Collection : MonoBehaviour
             ToggleHideAddButton(false);
             ToggleHideRemoveButton(true);
         }
+       
 
     }
 
@@ -271,6 +298,7 @@ public class Collection : MonoBehaviour
             PlayerHand.Add(SelectedItem.TazoItem);
             ToggleHideAddButton(true);
             ToggleHideRemoveButton(false);
+
         }
         else
         {
@@ -291,10 +319,9 @@ public class Collection : MonoBehaviour
         HandRemove.transform.gameObject.SetActive(!toggle);
     }
 
-    public void ToggleWarningTextButton(bool toggle)
+    public void ToggleHideWarningText(bool toggle)
     {
-        HandRemove.enabled = !toggle;
-        HandRemove.transform.gameObject.SetActive(!toggle);
+        WarningDisplay.SetActive(!toggle);
     }
 
     public void ExitButton()
@@ -314,6 +341,7 @@ public class Collection : MonoBehaviour
 
     private void DisplayHandSizeWarning()
     {
-        throw new NotImplementedException();
+
+        ToggleHideWarningText(false);
     }
 }

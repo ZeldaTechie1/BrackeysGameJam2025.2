@@ -48,7 +48,7 @@ public class Shop : MonoBehaviour
     [Space(5)]
     [field: Header("Tazo Display")]
     [SerializeField]
-    TazoDisplay TazoDisplay;
+    TazoDisplay TazoDisplayHolder;
     [SerializeField]
     GameObject TazoNameDisplay;
     [SerializeField]
@@ -191,7 +191,7 @@ public class Shop : MonoBehaviour
             TazoDescription.SetText(PulledTazo.GetDescription());
             var top= PulledTazo.GetTopMaterial();
             var bottom= PulledTazo.GetBottomMaterial();
-            TazoDisplay.SetMaterials(top, bottom);
+            TazoDisplayHolder.SetMaterials(top, bottom);
         }
 
     }
@@ -235,15 +235,15 @@ public class Shop : MonoBehaviour
         if (toggle)
         {
             TazoGetParent.transform.parent = BackStage.transform;
-            TazoDisplay.Hide(true);
+            TazoDisplayHolder.Hide(true);
            
 
         }
         else
         {
             TazoGetParent.transform.parent = this.transform;
-            TazoDisplay.Hide(false);
-            TazoDisplay.Flip();
+            TazoDisplayHolder.Hide(false);
+            TazoDisplayHolder.Flip();
             switch (SelectedItem.ChipBag.GetChipType())
             {
                 case ChipType.Potato:
