@@ -13,6 +13,9 @@ public class ShopItem : MonoBehaviour
     [SerializeField]
     public Image BagImage;
 
+    [SerializeField]
+    public GameObject Selection;
+
   
 
     private Toggle toggle;
@@ -35,6 +38,7 @@ public class ShopItem : MonoBehaviour
     public void SetUp()
     {
         BagImage.sprite = ChipBag.GetSprite();
+        Selection.SetActive(false);
 
     }
 
@@ -53,15 +57,26 @@ public class ShopItem : MonoBehaviour
 
         if(toggle!=null&&toggle.isOn)
         {
+            Selection.SetActive(false);
             ShopEventManager.Items.SelectItem(this);
             toggle.group.SetAllTogglesOff(false);
         }
         else if (toggle!=null&&!toggle.isOn) 
         {
+            Selection.SetActive(false);
             ShopEventManager.Items.DeselectItem(true);
           
         }
+        else
+        {
+            Selection.SetActive(false);
+        }
 
+    }
+
+    public void SetActiveSelection(bool active)
+    {
+        //Selection.SetActive(active);
     }
 
     public TazoItem PullTazo()

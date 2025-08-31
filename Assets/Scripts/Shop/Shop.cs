@@ -184,6 +184,8 @@ public class Shop : MonoBehaviour
         Name.enabled = true;
         Description.enabled = true;
         BuyButton.enabled = true;
+
+        shopItem.SetActiveSelection(true);
     }
 
     public void GetTazoFromBag()
