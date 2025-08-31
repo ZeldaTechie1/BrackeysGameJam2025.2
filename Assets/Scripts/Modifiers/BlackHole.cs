@@ -28,7 +28,6 @@ public class BlackHole : BasicAOEModifier
         {
             t.rb.AddForce(((transform.position - t.transform.position).normalized * 200) + (Vector3.up * 100));
         }
-        Debug.Log("suck");
     }
 }
 

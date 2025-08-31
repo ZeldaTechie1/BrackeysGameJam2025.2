@@ -29,7 +29,7 @@ public class RuffRuff : BasicAOEModifier
 
         foreach(Tazo t in strangerTazos)
         {
-            Debug.Log($"Applying force to {t.name}");
+            //Debug.Log($"Applying force to {t.name}");
             t.rb.AddForce(-(((transform.position - t.transform.position).normalized * 200) + (Vector3.up * 100)));
         }
     }

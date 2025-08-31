@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using System;
+using Random = UnityEngine.Random;
 
 public class CopyCat : BasicAOEModifier
 {

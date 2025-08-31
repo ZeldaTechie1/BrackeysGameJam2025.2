@@ -50,34 +50,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: m_Name
-      value: FlickyChicky
+      value: Link The Ruffian
       objectReference: {fileID: 0}
     - target: {fileID: 3572887625281166624, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0867543cdbfd6914bb18598b6b6daad4, type: 2}
+      objectReference: {fileID: 2100000, guid: 4b1c5ac3b1e088d4cbe651b653265de0, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: series
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: scoreValue
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: Link barks at any Pogs that aren't his owner's. He's a good protective
+        boy!
+      objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8baad16b50c175743b8809a1747dbea8, type: 2}
+      objectReference: {fileID: 2100000, guid: ce0dfb99b90329042b597bd3ed444fca, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4152792681849167726}
+      addedObject: {fileID: 8410246234892670384}
   m_SourcePrefab: {fileID: 100100000, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
 --- !u!1 &2112154006763209013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1698603407713298969, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
   m_PrefabInstance: {fileID: 782859066619652908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4152792681849167726
+--- !u!114 &8410246234892670384
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,8 +95,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2112154006763209013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0ac0f1fa6596514585400a8e3c6087c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f23811068c5f4c46ab3fb2229f0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
-  ModifierName: ChickFlick
+  Range: 100
+  ModifierName: RuffRuff
