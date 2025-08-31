@@ -22,6 +22,14 @@ public class ScoreController : MonoBehaviour
         VampiricDrain.GetPlayerScore += OnGetPlayerScore;
     }
 
+    private void OnDisable()
+    {
+        TurnHandler.ScoringTazos -= ScoreTazos;
+        TurnHandler.CheckingForWinner -= SelectWinner;
+        VampiricDrain.RemovePlayerScore -= OnRemovePlayerScore;
+        VampiricDrain.GetPlayerScore -= OnGetPlayerScore;
+    }
+
     private float OnGetPlayerScore(int player)
     {
         return player == 0 ? playerScore : opponentScore;

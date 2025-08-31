@@ -46,17 +46,15 @@ public class SlammerController : MonoBehaviour
 
     private void OnEnable()
     {
-        if(!InputActions.enabled)
-        {
-            InputActions.FindActionMap("Player").Enable();
-        }
+        InputActions.Enable();
+        InputActions.FindActionMap("Player").Enable();
     }
     private void OnDisable()
     {
-        if (InputActions.enabled)
-        {
-            InputActions.FindActionMap("Player").Disable();
-        }
+        InputActions.Disable();
+        InputActions.FindActionMap("Player").Disable();
+        TurnHandler.PlayerStartSlam -= OnPlayerStartSlam;
+        VampiricDrain.GetCurrentPlayer -= GetCurrentPlayer;
     }
 
     void OnPlayerStartSlam()
@@ -101,7 +99,6 @@ public class SlammerController : MonoBehaviour
                 }
             }
         }
-
         if (!powerMeter.isCharging && LeftMouseButtonAction.WasPressedThisFrame())
         {
             power = 0;

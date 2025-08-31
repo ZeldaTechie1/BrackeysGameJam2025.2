@@ -166,4 +166,14 @@ public class TurnHandler : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
+
+    public void OnDisable()
+    {
+        IntroductionHandler.FinishedIntro -= OnFinishedIntro;
+        SlammerController.SlamCompleted -= OnSlamCompleted;
+        TazoTracker.TazosDoneMoving -= OnTazosDoneMoving;
+        ScoreController.DoneScoring -= OnDoneScoring;
+        TazoTracker.KeepPlaying -= OnDoneCheckingIfPlayable;
+        ScoreController.DeterminedWinner -= OnDeterminedWinner;
+    }
 }
