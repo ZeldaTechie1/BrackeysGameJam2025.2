@@ -57,6 +57,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: b6f2fa2b2c8ba91479b363763f8dc20f, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Name
+      value: Selfish Sally
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Owner
+      value: Selfish Sally
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: Series
       value: 1
       objectReference: {fileID: 0}

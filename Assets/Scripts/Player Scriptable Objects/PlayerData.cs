@@ -12,7 +12,7 @@ public class PlayerData : ScriptableObject
 
 
     [SerializeField]
-    int MaxHandSize;
+    public int MaxHandSize;
 
     [SerializeField]
     public int HandSize;
@@ -77,7 +77,6 @@ public class PlayerData : ScriptableObject
     }
     public void MassAddToHand(List<TazoItem> pog)
     {
-        TazoHand.Clear();
         TazoHand = pog;
     }
 

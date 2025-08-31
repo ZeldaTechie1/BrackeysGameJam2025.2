@@ -343,7 +343,7 @@ public class Collection : MonoBehaviour
     {
         var holder = Warning.text;
 
-        Warning.SetText("HEY BRO! YOU GOTTA CHOOSE "+PlayerData.HandSize.ToString()+" TAZOS TO PLAY WITH BEFORE YOU CAN RETURN TO THE FIGHT!");
+        Warning.SetText("HEY BRO! YOU GOTTA CHOOSE "+PlayerData.HandSize.ToString()+" POGS TO PLAY WITH BEFORE YOU CAN RETURN TO THE FIGHT!");
 
         ToggleHideWarningText(false);
     }

@@ -57,6 +57,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: e9f214a8b1300d6479f56456cd1f998e, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Name
+      value: Void Midna
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: Series
       value: 1
       objectReference: {fileID: 0}

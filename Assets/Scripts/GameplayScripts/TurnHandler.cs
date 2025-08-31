@@ -144,10 +144,12 @@ public class TurnHandler : MonoBehaviour
             if(playerID == 0)
             {
                 winningPrefab.SetActive(true);
+                playerData.IncrementWin();
             }
             else
             {
                 losingPrefab.SetActive(true);
+                playerData.IncrementLoss();
             }
         }
 

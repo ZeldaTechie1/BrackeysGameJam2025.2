@@ -57,6 +57,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 4b1c5ac3b1e088d4cbe651b653265de0, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Name
+      value: Link the Ruffian
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Owner
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: Series
       value: 1
       objectReference: {fileID: 0}

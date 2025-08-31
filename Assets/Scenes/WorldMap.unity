@@ -324,9 +324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'My Tazos
-
-'
+  m_text: My Pogs
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bd790eb63fdf31246a5853a67ec7c658, type: 2}
   m_sharedMaterial: {fileID: 3535001351055559151, guid: bd790eb63fdf31246a5853a67ec7c658, type: 2}

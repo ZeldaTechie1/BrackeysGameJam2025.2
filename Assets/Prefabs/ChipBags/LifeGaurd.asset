@@ -12,15 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6bdc2142f5b5694f8407d18cb3b25c5, type: 3}
   m_Name: LifeGaurd
   m_EditorClassIdentifier: 
-  Name: LifeGaurd
-  Description: LifGaurd
+  Name: LifeGuard
+  Description: LifeGuard
   EffectName: LIFE
   ChipType: 1
   BagPortrait: {fileID: -670593793, guid: ea9e2ac5cb241414ea5368fd0bb56721, type: 3}
   PossibleTazos:
   - {fileID: 11400000, guid: f0f59509d64b6a74890ec9b3c94da1a7, type: 2}
   - {fileID: 11400000, guid: b17f6032f4bfafb4c876a60e41f830e0, type: 2}
-  - {fileID: 11400000, guid: b41372fd6698a2b43bccf694180f1b92, type: 2}
   - {fileID: 11400000, guid: 0112f6b74e8a98c44aa9b001fcc42984, type: 2}
   - {fileID: 11400000, guid: df537544b5d46b3449cdb9f231e9a435, type: 2}
   - {fileID: 11400000, guid: 6d5625ece2027f44aa6a5f62bbf4566f, type: 2}
