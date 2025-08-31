@@ -56,6 +56,15 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 125e6398fdb773e499db54742f1e3f64, type: 2}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Name
+      value: Slasher
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: Any non horror movie Pogs will be beaten senseless by every able bodied
+        person in the bar. "Do you like scary movies?"
+      objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

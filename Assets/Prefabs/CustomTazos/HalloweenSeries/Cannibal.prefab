@@ -57,8 +57,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 125e6398fdb773e499db54742f1e3f64, type: 2}
     - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Name
+      value: Cannibal
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: scoreValue
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9057288246611206911, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
+      propertyPath: Description
+      value: Eats a random Pog in the area and scores it's non modified score with
+        a 2x Mult. The early bird gets the worm!
       objectReference: {fileID: 0}
     - target: {fileID: 9169114070038673101, guid: f641e4f5d707ff74b9f712ff489a76f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
