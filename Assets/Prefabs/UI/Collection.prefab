@@ -1819,6 +1819,8 @@ MonoBehaviour:
   TGroup: {fileID: 4058968629818331380}
   CollectionDisplay: {fileID: 5554165813079576670}
   HandDisplay: {fileID: 8541076128905362450}
+  WarningDisplay: {fileID: 3200519886804794987}
+  WarningText: {fileID: 3857130946438566273}
   PlayerData: {fileID: 11400000, guid: 650eee1bac06a744091ac918400f3ba7, type: 2}
   SelectedItem: {fileID: 0}
 --- !u!114 &4058968629818331380
@@ -2504,7 +2506,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8821559232897136261}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2504191596744763106}
+        m_TargetAssemblyTypeName: Collection, Assembly-CSharp
+        m_MethodName: ToggleHideWarningText
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!1 &9183455964987461189
 GameObject:
   m_ObjectHideFlags: 0

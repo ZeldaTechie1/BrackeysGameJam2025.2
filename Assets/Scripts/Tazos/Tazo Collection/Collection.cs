@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -106,6 +107,8 @@ public class Collection : MonoBehaviour
 
         ToggleHideAddButton(true);
         ToggleHideRemoveButton(true);
+        ToggleHideWarningText(true);
+        ToggleHideTazoText(true);
 
     }
 
@@ -142,7 +145,7 @@ public class Collection : MonoBehaviour
                 CollectionItem.TazoItem=tazo;
                 CollectionItem.SetUp();
                 CollectionInventory.Add(CollectionItem);
-                Debug.Log("SQUEE");
+                
 
 
             }
@@ -163,11 +166,12 @@ public class Collection : MonoBehaviour
                 CollectionItem.TazoItem = tazo;
                 CollectionItem.SetUp();
                 HandInventory.Add(CollectionItem,item);
-
+                
 
             }
            
         }
+        
 
     }
 
@@ -191,10 +195,16 @@ public class Collection : MonoBehaviour
         HandRemove.enabled=false;
     }
 
+    public void ToggleHideTazoText(bool hide)
+    {
+        TazoNameDisplay.SetActive(!hide);
+
+       TazoDescriptionDisplay.SetActive(!hide);
+    }
 
     public void SelectItem(CollectionItem Item)
     {
-        Debug.Log("DEBUG");
+        
         SelectedItem = Item;
 
         Name.SetText(Item.GetItemName());
@@ -212,6 +222,7 @@ public class Collection : MonoBehaviour
             ToggleHideAddButton(false);
             ToggleHideRemoveButton(true);
         }
+        ToggleHideTazoText(false);
 
     }
 
@@ -291,10 +302,9 @@ public class Collection : MonoBehaviour
         HandRemove.transform.gameObject.SetActive(!toggle);
     }
 
-    public void ToggleWarningTextButton(bool toggle)
+    public void ToggleHideWarningText(bool toggle)
     {
-        HandRemove.enabled = !toggle;
-        HandRemove.transform.gameObject.SetActive(!toggle);
+        WarningDisplay.SetActive(!toggle);
     }
 
     public void ExitButton()
@@ -314,6 +324,7 @@ public class Collection : MonoBehaviour
 
     private void DisplayHandSizeWarning()
     {
-        throw new NotImplementedException();
+
+        ToggleHideWarningText(false);
     }
 }
