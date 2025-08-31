@@ -9,11 +9,15 @@ public class LevelSelectionBox : MonoBehaviour
     [SerializeField]
     private Image CharacterPortrait;
     [SerializeField]
+    private Image LevelBox;
+    [SerializeField]
     private TextMeshProUGUI CharacterNameText;
     [SerializeField]
     private  Sprite DefaultPortrait;
     [SerializeField]
     private Sprite LossPortrait;
+    [SerializeField]
+    private Sprite LossBox;
     [SerializeField]
     private string CharacterTitle;
 
@@ -51,6 +55,7 @@ public class LevelSelectionBox : MonoBehaviour
     {
        
         UpdateCharacter(LossPortrait, "<s>" + CharacterTitle+ "<s>");
+        LevelBox.sprite = LossBox;
     }
 
     public void UpdateCharacter(Sprite portrait, string CharacterTitle)
